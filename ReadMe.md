@@ -1,21 +1,29 @@
 # SpeedyCart
-Project de semestre des MIN1 de 4eme année.
 
-Creation d'une aplication similaire a uberEat mais élargis à tous les comerces.
+Ce dépôt GitHub contient à la fois une API REST développée sous Spring Boot et une application Android développée avec Android Studio.
+L'application a pour but de mettre en relation des particuliers et des commerces de proximité pour livrer des produits.
 
-Aplication de mise en relation d'un client(commercant) et les particuliers(acheteurs).
+## Context
 
-## Technologie utilisée
-* Front-end : kotlin
-* Back-end : java
-* BDD : SQL
+Cette API est dévellopé dans le cadre d'un projet de semestre de 4e année à l'[EPF](https://www.epf.fr/).
 
-## Structure
+## Pré-requis
+Avant de travailler avec ce dépôt, assurez-vous d'avoir les éléments suivants :
 
-- `model/` : contains class representing data entities
-- `view/` : Contains the main activity class responsible for the UI layout and interaction
-- `viewModel` : contains class that act as a intermediate between the view and the model
-- `repository/` : contains class responsible for managing data operations
+Pour l'API :
+* Java 8 ou une version ultérieure installée sur votre système
+* Maven pour gérer les dépendances et construire le projet
 
-## Features
-- A venir
+Pour l'application Android :
+* Android Studio installé sur votre ordinateur
+* Un téléphone Android ou un émulateur Android pour exécuter l'application
+
+## Guide d'Installation
+1. Cloner le dépôt Git : `git clone https://github.com/Mathieuepf/SpeedyCart.git`
+2. Suivre le [guide d'installation](api/README.md#guide-dinstallation) de l'API
+3. Suivre le [guide d'instalation](app/ReadMe.md#guide-dinstallation) de l'application Android
+
+## Guide d'Utilisation
+Pour l'API : Consultez le [guide d'utilisation](api/README.md#guide-dutilisation) de l'API pour connaître les méthodes disponibles, leurs options et ce qu'elles retournent.
+
+Pour l'application Android: Consultez le [guide d'utilisation](app/ReadMe.md#guide-dutilisation) de l'application pour découvrir ses fonctionnalités et comment les utiliser.
