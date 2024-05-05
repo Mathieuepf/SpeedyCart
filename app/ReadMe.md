@@ -18,9 +18,10 @@ Avant d'utiliser cette application, assurez-vous d'avoir les éléments suivants
 2. Ouvrir Android Studio
 3. Importer le projet en sélectionnant le répertoire du projet cloné
 4. Attendre que les dépendances soient téléchargées et que le projet soit synchronisé
-5. Connecter votre téléphone Android à votre ordinateur via USB (ou utiliser un émulateur Android)
-6. Sélectionner votre appareil ou l'émulateur dans Android Studio
-7. Appuyer sur le bouton "Run" pour installer et exécuter l'application
+5. Modifier dans le fichier SpeedyCartApi la ligne avec l'URL de l'API : `private const val BASE_URL = "http://url-api:9090"`
+6. Connecter votre téléphone Android à votre ordinateur via USB (ou utiliser un émulateur Android)
+7. Sélectionner votre appareil ou l'émulateur dans Android Studio
+8. Appuyer sur le bouton "Run" pour installer et exécuter l'application
 
 ## Guide d'Utilisation
 Ouvrez l'application et explorez là.
