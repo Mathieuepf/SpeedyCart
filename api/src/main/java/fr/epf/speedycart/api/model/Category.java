@@ -6,18 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Data
-public class Client {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstname;
-    private String lastname;
-    private LocalDateTime activeSince;
-    private LocalDateTime disableSince;
-    private LocalDateTime dateOfBirth;
+    private String name;
 }

@@ -8,20 +8,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/clients")
 public class ClientController {
+
     @Autowired
     private ClientDao clientDao;
 
-    //Récupérer la liste des clients
-    @RequestMapping(value = "/Clients", method = RequestMethod.GET)
+    @GetMapping
     public List<Client> listClients() {
         return clientDao.findAll();
     }
 
-    //Récupérer un client par son Id
-    @GetMapping(value = "/Clients/{id}")
-    public Client afficherUnClient(@PathVariable int id) {
+    @GetMapping("/{id}")
+    public Client afficherUnClient(@PathVariable long id) {
         return clientDao.findById(id);
-
     }
 }

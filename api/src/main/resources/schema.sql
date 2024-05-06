@@ -18,11 +18,11 @@ CREATE TABLE Shop(
         active_since        DATETIME,
         disable_since       DATETIME,
         siret               Varchar (50) NOT NULL,
-        address_id          BIGINT NOT NULL,
+        address_id          BIGINT NOT NULL UNIQUE,
         FOREIGN KEY (address_id) REFERENCES Address(id)
 );
 
-CREATE TABLE DeliveryPerson(
+CREATE TABLE Delivery_Person(
         id              BIGINT AUTO_INCREMENT PRIMARY KEY,
         firstname       Varchar (50) NOT NULL,
         lastname        Varchar (50) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE Client(
 );
 
 CREATE TABLE client_address(
-        address_id  BIGINT NOT NULL ,
+        address_id  BIGINT NOT NULL,
         client_id   BIGINT NOT NULL,
         FOREIGN KEY (address_id) REFERENCES Address(id),
         FOREIGN KEY (client_id) REFERENCES Client(id)
@@ -66,13 +66,13 @@ CREATE TABLE `User`(
      id                     BIGINT AUTO_INCREMENT PRIMARY KEY,
      mail                   Varchar (30) NOT NULL,
      password               Varchar (20) NOT NULL,
-     client_id              BIGINT NULL,
-     shop_id                BIGINT NULL,
-     delivery_person_id     BIGINT NULL,
-     admin_id               BIGINT NULL,
+     client_id              BIGINT NULL UNIQUE,
+     shop_id                BIGINT NULL UNIQUE,
+     delivery_person_id     BIGINT NULL UNIQUE,
+     admin_id               BIGINT NULL UNIQUE,
      FOREIGN KEY (client_id)    REFERENCES Client(id),
      FOREIGN KEY (shop_id)      REFERENCES Shop(id),
-     FOREIGN KEY (delivery_person_id) REFERENCES DeliveryPerson(id),
+     FOREIGN KEY (delivery_person_id) REFERENCES Delivery_Person(id),
      FOREIGN KEY (admin_id)     REFERENCES Admin(id)
 );
 
@@ -86,7 +86,7 @@ CREATE TABLE Delivery(
         delivered           Bool,
         disable             Bool,
         delivery_person_id  BIGINT,
-        FOREIGN KEY (delivery_person_id) REFERENCES DeliveryPerson(id)
+        FOREIGN KEY (delivery_person_id) REFERENCES Delivery_Person(id)
 );
 
 CREATE TABLE Product(
@@ -121,7 +121,7 @@ CREATE TABLE `Order`(
 CREATE TABLE product_order(
       quantity      INT NOT NULL,
       order_id      BIGINT NOT NULL,
-      shop_id       BIGINT NOT NULL,
+      product_id    BIGINT NOT NULL,
       FOREIGN KEY (order_id) REFERENCES `Order`(id),
-      FOREIGN KEY (shop_id) REFERENCES Shop(id)
+      FOREIGN KEY (product_id) REFERENCES Product(id)
 );
