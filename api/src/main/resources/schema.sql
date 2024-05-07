@@ -62,7 +62,7 @@ CREATE TABLE category_shop(
     FOREIGN KEY (category_id) REFERENCES Category(id)
 );
 
-CREATE TABLE `User`(
+CREATE TABLE _User (
      id                     BIGINT AUTO_INCREMENT PRIMARY KEY,
      mail                   Varchar (30) NOT NULL,
      password               Varchar (20) NOT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE Product(
     FOREIGN KEY (shop_id) REFERENCES Shop(id)
 );
 
-CREATE TABLE `Order`(
+CREATE TABLE _Order (
         id                  BIGINT AUTO_INCREMENT PRIMARY KEY,
         order_at            DATETIME,
         payed               Bool,
@@ -122,6 +122,6 @@ CREATE TABLE product_order(
       quantity      INT NOT NULL,
       order_id      BIGINT NOT NULL,
       product_id    BIGINT NOT NULL,
-      FOREIGN KEY (order_id) REFERENCES `Order`(id),
+      FOREIGN KEY (order_id) REFERENCES _Order(id),
       FOREIGN KEY (product_id) REFERENCES Product(id)
 );

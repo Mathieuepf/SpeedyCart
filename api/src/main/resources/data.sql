@@ -38,7 +38,7 @@ INSERT INTO category_shop (shop_id, category_id) VALUES
 (2, 2),
 (3, 3);
 
-INSERT INTO `User` (mail, password, client_id, shop_id, delivery_person_id, admin_id) VALUES
+INSERT INTO _User (mail, password, client_id, shop_id, delivery_person_id, admin_id) VALUES
 ('alice@example.com', 'password123', 1, NULL, NULL, NULL),
 ('bob@example.com', 'password456', NULL, 2, NULL, NULL),
 ('emily@example.com', 'password789', NULL, NULL, 1, NULL);
@@ -53,7 +53,7 @@ INSERT INTO Product (name, unit_price, description, stock, active_since, disable
 ('T-Shirt', 29.99, 'Cotton T-shirt', 100, '2024-05-03 09:00:00', NULL, 0.3, 0.5, 1, 2),
 ('Microwave', 149.99, 'Compact microwave oven', 20, '2024-05-03 11:00:00', NULL, 12.0, 0.5, 0, 3);
 
-INSERT INTO `Order` (order_at, payed, client_id, delivery_id, ship_to, charge_to) VALUES
+INSERT INTO _Order (order_at, payed, client_id, delivery_id, ship_to, charge_to) VALUES
 ('2024-05-03 10:30:00', TRUE, 1, 1, 1, 1),
 ('2024-05-03 11:45:00', TRUE, 2, 2, 2, 2),
 ('2024-05-03 12:15:00', TRUE, 3, 3, 3, 3);
