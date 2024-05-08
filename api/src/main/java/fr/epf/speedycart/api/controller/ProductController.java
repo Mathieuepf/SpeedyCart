@@ -1,26 +1,25 @@
 package fr.epf.speedycart.api.controller;
 
 
-import fr.epf.speedycart.api.dao.ProductDao;
 import fr.epf.speedycart.api.model.Product;
+import fr.epf.speedycart.api.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
-    private ProductDao productDao;
+    private ProductService productService;
 
-    @GetMapping
-    public List<Product> listeProduits() {
-        return productDao.findAll();
-    }
+    @GetMapping("/products")
+    public List<Product> getListProduct() { return productService.getProductsData(); }
 
-    @GetMapping("/{id}")
-    public Product afficherUnProduit(@PathVariable long id) {
-        return productDao.findById(id);
-    }
+    @GetMapping("product/{id}")
+    public Optional<Product> getProductById(@PathVariable long id) { return productService.getProductData(id); }
+
+    @DeleteMapping("product/{id}")
+    public void delProductById(@PathVariable long id){ productService.deleteProductData(id); }
 }
