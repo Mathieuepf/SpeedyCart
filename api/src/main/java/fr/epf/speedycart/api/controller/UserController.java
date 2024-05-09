@@ -2,9 +2,13 @@ package fr.epf.speedycart.api.controller;
 
 import fr.epf.speedycart.api.model.User;
 import fr.epf.speedycart.api.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,11 +18,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /*
-    TODO : gerer les exeptions
     @PostMapping("/user")
-    public User saveUser(@RequestBody User user){ return userService.saveUserData(user); }
-    */
+    public User saveUser(@Valid @RequestBody User user){ return userService.saveUserData(user); }
 
     @GetMapping("/users")
     public List<User> getUsers() {
@@ -31,7 +32,15 @@ public class UserController {
     }
 
     @PutMapping("/user")
-    public User setUser(@RequestBody User user){ return userService.updateUserData(user);}
+    public ResponseEntity<User> setUser(@RequestBody @Valid User user){
+        User userAdded = userService.updateUserData(user);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(userAdded.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
 
     @DeleteMapping("/user/{id}")
     public void deleteUser(@PathVariable long id){ userService.deleteUserData(id); }

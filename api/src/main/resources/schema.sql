@@ -8,16 +8,16 @@ CREATE TABLE Address(
         number      Varchar (10) NOT NULL,
         road        Varchar (50) NOT NULL,
         city        Varchar (50) NOT NULL,
-        add_info    Varchar(30)
+        add_info    Varchar(50)
 );
 
 CREATE TABLE Shop(
         id                  BIGINT AUTO_INCREMENT PRIMARY KEY,
         name                Varchar (50) NOT NULL,
-        description         Varchar (500) NOT NULL,
+        description         Varchar (300),
         active_since        DATETIME,
         disable_since       DATETIME,
-        siret               Varchar (50) NOT NULL,
+        siret               Varchar (14) NOT NULL,
         address_id          BIGINT NOT NULL UNIQUE,
         FOREIGN KEY (address_id) REFERENCES Address(id)
 );
@@ -64,7 +64,7 @@ CREATE TABLE category_shop(
 
 CREATE TABLE _User (
      id                     BIGINT AUTO_INCREMENT PRIMARY KEY,
-     mail                   Varchar (30) NOT NULL,
+     mail                   Varchar (30) NOT NULL UNIQUE,
      password               Varchar (20) NOT NULL,
      client_id              BIGINT NULL UNIQUE,
      shop_id                BIGINT NULL UNIQUE,
@@ -93,13 +93,13 @@ CREATE TABLE Product(
     id              BIGINT  AUTO_INCREMENT PRIMARY KEY,
     name            VARCHAR (20) NOT NULL,
     unit_price      REAL NOT NULL,
-    description     VARCHAR (200) NOT NULL,
+    description     VARCHAR (200),
     stock           INT NOT NULL,
     active_since    DATETIME,
     disable_since   DATETIME,
     weight          REAL NOT NULL,
     sizes           REAL NOT NULL,
-    for_adults      INT NOT NULL,
+    for_adults      Bool NOT NULL,
     shop_id         BIGINT NOT NULL,
     FOREIGN KEY (shop_id) REFERENCES Shop(id)
 );

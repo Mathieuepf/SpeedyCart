@@ -1,6 +1,8 @@
 package fr.epf.speedycart.api.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -13,11 +15,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @PastOrPresent(message = "Order At must be a past or the current date")
     private LocalDateTime orderAt;
+
     private boolean payed;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @NotNull(message = "Client can not be null")
     private Client client;
 
     @ManyToOne
