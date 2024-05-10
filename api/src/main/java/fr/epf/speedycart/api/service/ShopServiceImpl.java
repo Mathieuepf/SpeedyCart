@@ -1,14 +1,13 @@
 package fr.epf.speedycart.api.service;
 
+import fr.epf.speedycart.api.exception.ShopNotFoundException;
 import fr.epf.speedycart.api.model.Product;
 import fr.epf.speedycart.api.model.Shop;
 import fr.epf.speedycart.api.repository.ProductDao;
 import fr.epf.speedycart.api.repository.ShopDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ShopServiceImpl implements ShopService{
@@ -16,7 +15,7 @@ public class ShopServiceImpl implements ShopService{
     ShopDao shopDao;
 
     @Autowired
-    ProductDao ProductRepository;
+    ProductDao productDao;
 
     @Override
     public List<Shop> getShopsData() {
@@ -24,12 +23,13 @@ public class ShopServiceImpl implements ShopService{
     }
 
     @Override
-    public Optional<Shop> getShopData(Long Id) {
-        return shopDao.findById(Id);
+    public Shop getShopData(Long Id) {
+        return shopDao.findById(Id)
+                .orElseThrow(()->new ShopNotFoundException("Invalid Id"));
     }
 
     @Override
     public List<Product> getProductsFromShopData(Long Id) {
-        return ProductRepository.findByShopId(Id);
+        return productDao.findByShopId(Id);
     }
 }

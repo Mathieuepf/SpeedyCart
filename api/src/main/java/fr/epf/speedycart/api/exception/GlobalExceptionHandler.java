@@ -13,6 +13,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Product not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ShopNotFoundException.class)
+    public ResponseEntity<String> handleProductNotFoundException(ShopNotFoundException e) {
+        return new ResponseEntity<>("Shop not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> exceptionHandler(Exception e){
         return new ResponseEntity<>("Invalid statement: " + e.getMessage(), HttpStatus.BAD_REQUEST);

@@ -4,9 +4,7 @@ import fr.epf.speedycart.api.model.User;
 import fr.epf.speedycart.api.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -24,8 +22,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Optional<User> getUserData(Long Id) {
-        return userDao.findById(Id);
+    public User getUserData(Long Id) {
+        return userDao.findById(Id).orElseThrow(()-> new RuntimeException());
     }
 
     @Override

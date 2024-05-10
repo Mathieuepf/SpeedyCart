@@ -25,7 +25,7 @@ public class ShopController {
     }
 
     @GetMapping("shop/{id}")
-    public Optional<Shop> getShop(@PathVariable long id) {
+    public Shop getShop(@PathVariable long id) {
         return shopService.getShopData(id);
     }
 

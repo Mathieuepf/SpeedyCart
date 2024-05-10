@@ -3,60 +3,66 @@ package fr.epf.speedycart.api.service;
 import fr.epf.speedycart.api.exception.ProductNotFoundException;
 import fr.epf.speedycart.api.model.Product;
 import fr.epf.speedycart.api.repository.ProductDao;
-import fr.epf.speedycart.api.repository.ProductOrderDao;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements ProductService{
     @Autowired
-    ProductDao ProductRepository;
+    ProductDao productDao;
 
     @Autowired
-    ProductOrderDao productOrderDao;
+    ProductOrderService productOrderService;
 
-    //TODO : programmer lors du sprint 2
+    @Autowired
+    ShopService shopService;
+
     @Override
-    public Product saveProductData(Product product) {
-        return ProductRepository.save(product);
+    public Product saveProductData(@Valid Product product) {
+        // check if the shop exists
+        shopService.getShopData(product.getShop().getId());
+        return productDao.save(product);
     }
 
     @Override
     public List<Product> getProductsData() {
-        return ProductRepository.findAll();
-    }
-
-    @Override
-    public Optional<Product> getProductData(Long Id) {
-        Optional<Product> product =ProductRepository.findById(Id);
-        if (product.isEmpty()){
-            throw new ProductNotFoundException("Invalid Id");
+        List<Product> products = productDao.findAll();
+        if(products.size() == 0){
+            throw new ProductNotFoundException("No records");
         }
-        return product;
+        return products;
     }
 
-    //TODO : programmer lors du sprint 2
     @Override
-    public Product updateProductData(Product product) {
-        return ProductRepository.save(product);
+    public Product getProductData(Long Id) {
+        return productDao.findById(Id)
+                .orElseThrow(()-> new ProductNotFoundException("Invalid Id"));
+    }
+
+    @Override
+    public Product updateProductData(@Valid Product product) {
+        // check if the product exists
+        this.getProductData(product.getId());
+        return this.saveProductData(product);
     }
 
     @Override
     public void deleteProductData(Long id) {
-        /*
-        // cherche si le produit est lier a des commandes
-        List<ProductOrder> orders = productOrderDao.findByProductId(id);
+        // check if the product exists
+        Product product = this.getProductData(id);
 
-        if (!orders.isEmpty()) {
-            // modifit le statue du produit en non disponible
+        // check if the product is linked to any order
+        boolean linkedToOrder = productOrderService.existsByProductData(product);
+        if (linkedToOrder){
+            if (product.getDisableSince() == null) {
+                product.setDisableSince(LocalDateTime.now());
+                productDao.save(product);
+            }
         } else {
-            // Supprimer le produit
-            roductDao.deleteById(id);
+            productDao.delete(product);
         }
-        */
     }
-
 }
