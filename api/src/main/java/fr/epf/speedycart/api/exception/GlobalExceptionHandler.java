@@ -18,6 +18,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Shop not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(AddressNotFoundException.class)
+    public ResponseEntity<String> handleProductNotFoundException(AddressNotFoundException e) {
+        return new ResponseEntity<>("Address not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> exceptionHandler(Exception e){
         return new ResponseEntity<>("Invalid statement: " + e.getMessage(), HttpStatus.BAD_REQUEST);

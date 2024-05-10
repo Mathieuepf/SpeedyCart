@@ -1,8 +1,10 @@
 package fr.epf.speedycart.api.service;
 
 import fr.epf.speedycart.api.exception.ProductNotFoundException;
+import fr.epf.speedycart.api.exception.ShopNotFoundException;
 import fr.epf.speedycart.api.model.Product;
 import fr.epf.speedycart.api.repository.ProductDao;
+import fr.epf.speedycart.api.repository.ShopDao;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +20,15 @@ public class ProductServiceImpl implements ProductService{
     ProductOrderService productOrderService;
 
     @Autowired
-    ShopService shopService;
+    ShopDao shopDao;
 
     @Override
     public Product saveProductData(@Valid Product product) {
         // check if the shop exists
-        shopService.getShopData(product.getShop().getId());
+        shopDao.findById(product.getShop().getId())
+                .orElseThrow(()->new ShopNotFoundException("Invalid Id"));
+
+        product.setId(0L);
         return productDao.save(product);
     }
 
@@ -46,7 +51,12 @@ public class ProductServiceImpl implements ProductService{
     public Product updateProductData(@Valid Product product) {
         // check if the product exists
         this.getProductData(product.getId());
-        return this.saveProductData(product);
+
+        // check if the shop exists
+        shopDao.findById(product.getShop().getId())
+                .orElseThrow(()->new ShopNotFoundException("Invalid Id"));
+
+        return productDao.save(product);
     }
 
     @Override
