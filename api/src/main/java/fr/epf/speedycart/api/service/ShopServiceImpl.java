@@ -84,9 +84,11 @@ public class ShopServiceImpl implements ShopService{
     public void deleteShopData(Long Id) {
         //check if the shop exists
         Shop shop = this.getShopData(Id);
+        System.out.println("enter 1");
 
         if (shop.getDisableSince() == null){
-            shop.setDisableSince(LocalDateTime.now());
+            shopDao.save(shop);
+            shop.setDisableSince(LocalDateTime.now().plusMinutes(5));
             shopDao.save(shop);
         }
     }

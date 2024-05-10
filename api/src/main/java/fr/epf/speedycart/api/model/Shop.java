@@ -17,7 +17,7 @@ public class Shop {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Pattern(regexp = "[A-Za-z]{1,50}",
+    @Pattern(regexp = "[A-Za-z ]{1,50}",
             message = "Name must be 1-50 characters and only A-Z or a-z")
     @NotNull(message = "Name can not be null")
     private String name;

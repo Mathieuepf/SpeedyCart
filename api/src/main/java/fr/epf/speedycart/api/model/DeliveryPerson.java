@@ -14,12 +14,12 @@ public class DeliveryPerson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Pattern(regexp = "[A-Za-z]{1,50}",
+    @Pattern(regexp = "[A-Za-z-]{1,50}",
             message = "First Name must be 1-50 characters and only A-Z or a-z")
     @NotNull(message = "First Name can not be null")
     private String firstname;
 
-    @Pattern(regexp = "[A-Za-z]{1,50}",
+    @Pattern(regexp = "[A-Za-z-]{1,50}",
             message = "Last Name must be 1-50 characters and only A-Z or a-z")
     @NotNull(message = "Last Name can not be null")
     private String lastname;
@@ -41,6 +41,6 @@ public class DeliveryPerson {
 
     @ManyToOne
     @JoinColumn(name = "address_id")
-    @NotNull(message = "Adress can not be null")
+    @NotNull(message = "Address can not be null")
     private Address address;
 }
