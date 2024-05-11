@@ -8,11 +8,12 @@ import fr.epf.speedycart.api.repository.ShopDao;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductDao productDao;
 
@@ -26,7 +27,7 @@ public class ProductServiceImpl implements ProductService{
     public Product saveProductData(@Valid Product product) {
         // check if the shop exists
         shopDao.findById(product.getShop().getId())
-                .orElseThrow(()->new ShopNotFoundException("Invalid Id"));
+                .orElseThrow(() -> new ShopNotFoundException("Invalid Id"));
 
         product.setId(0L);
         return productDao.save(product);
@@ -35,7 +36,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Product> getProductsData() {
         List<Product> products = productDao.findAll();
-        if(products.size() == 0){
+        if (products.size() == 0) {
             throw new ProductNotFoundException("No records");
         }
         return products;
@@ -44,7 +45,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product getProductData(Long Id) {
         return productDao.findById(Id)
-                .orElseThrow(()-> new ProductNotFoundException("Invalid Id"));
+                .orElseThrow(() -> new ProductNotFoundException("Invalid Id"));
     }
 
     @Override
@@ -54,7 +55,7 @@ public class ProductServiceImpl implements ProductService{
 
         // check if the shop exists
         shopDao.findById(product.getShop().getId())
-                .orElseThrow(()->new ShopNotFoundException("Invalid Id"));
+                .orElseThrow(() -> new ShopNotFoundException("Invalid Id"));
 
         return productDao.save(product);
     }
@@ -66,7 +67,7 @@ public class ProductServiceImpl implements ProductService{
 
         // check if the product is linked to any order
         boolean linkedToOrder = productOrderService.existsByProductData(product);
-        if (linkedToOrder){
+        if (linkedToOrder) {
             if (product.getDisableSince() == null) {
                 product.setDisableSince(LocalDateTime.now());
                 productDao.save(product);

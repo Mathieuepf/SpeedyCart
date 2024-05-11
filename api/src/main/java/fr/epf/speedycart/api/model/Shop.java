@@ -22,7 +22,7 @@ public class Shop {
     @NotNull(message = "Name can not be null")
     private String name;
 
-    @Length(min= 1, max=300,
+    @Length(min = 1, max = 300,
             message = "Description must be 1-300 characters")
     private String description;
 

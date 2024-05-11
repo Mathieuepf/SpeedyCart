@@ -15,7 +15,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Length(min= 3, max=30, message = "Email must be 3-30 characters")
+    @Length(min = 3, max = 30, message = "Email must be 3-30 characters")
     @NotNull(message = "Email can not be null")
     @Email(message = "Invalid email")
     @Column(unique = true)

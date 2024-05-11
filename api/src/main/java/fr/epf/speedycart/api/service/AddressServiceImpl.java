@@ -7,8 +7,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class AddressServiceImpl implements AddressService {
     @Autowired
@@ -17,7 +15,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public Address getAddressData(Long id) {
         return addressDao.findById(id)
-                .orElseThrow(()-> new AddressNotFoundException("Invalid Id"));
+                .orElseThrow(() -> new AddressNotFoundException("Invalid Id"));
     }
 
     @Override

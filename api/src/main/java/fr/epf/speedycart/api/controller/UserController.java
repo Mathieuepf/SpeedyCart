@@ -10,7 +10,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -19,7 +18,15 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user")
-    public User saveUser(@Valid @RequestBody User user){ return userService.saveUserData(user); }
+    public ResponseEntity<User> saveUser(@RequestBody @Valid User user) {
+        User userAdded = userService.saveUserData(user);
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(userAdded.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+    }
 
     @GetMapping("/users")
     public List<User> getUsers() {
@@ -32,16 +39,12 @@ public class UserController {
     }
 
     @PutMapping("/user")
-    public ResponseEntity<User> setUser(@RequestBody @Valid User user){
-        User userAdded = userService.updateUserData(user);
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(userAdded.getId())
-                .toUri();
-        return ResponseEntity.created(location).build();
+    public User setUser(@Valid @RequestBody User user) {
+        return userService.updateUserData(user);
     }
 
     @DeleteMapping("/user/{id}")
-    public void deleteUser(@PathVariable long id){ userService.deleteUserData(id); }
+    public void deleteUser(@PathVariable long id) {
+        userService.deleteUserData(id);
+    }
 }

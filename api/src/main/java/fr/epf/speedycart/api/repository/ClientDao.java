@@ -1,15 +1,12 @@
 package fr.epf.speedycart.api.repository;
 
-import fr.epf.speedycart.api.model.User;
+import fr.epf.speedycart.api.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserDao extends JpaRepository<User, Long> {
-    User findById(long id);
-
-    Optional<User> findByMail(String str);
+public interface ClientDao extends JpaRepository<Client, Long> {
+    Optional<Client> findById(Long id);
 }

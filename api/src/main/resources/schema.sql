@@ -40,7 +40,7 @@ CREATE TABLE Admin(
 );
 
 CREATE TABLE Client(
-    id              BIGINT PRIMARY KEY,
+    id              BIGINT AUTO_INCREMENT PRIMARY KEY,
     firstname       VARCHAR (50) NOT NULL,
     lastname        VARCHAR (50) NOT NULL,
     active_since    DATETIME,
@@ -90,7 +90,7 @@ CREATE TABLE Delivery(
 );
 
 CREATE TABLE Product(
-    id              BIGINT  AUTO_INCREMENT PRIMARY KEY,
+    id              BIGINT AUTO_INCREMENT PRIMARY KEY,
     name            VARCHAR (20) NOT NULL,
     unit_price      REAL NOT NULL,
     description     VARCHAR (200),

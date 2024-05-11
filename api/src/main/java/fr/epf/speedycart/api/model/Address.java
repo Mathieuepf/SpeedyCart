@@ -31,7 +31,7 @@ public class Address {
     @NotNull(message = "City can not be null")
     private String city;
 
-    @Length(min= 1, max=50,
+    @Length(min = 1, max = 50,
             message = "AddInfo must be 1-50 characters")
     private String addInfo;
 }

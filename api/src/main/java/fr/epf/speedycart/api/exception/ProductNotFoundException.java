@@ -1,10 +1,11 @@
 package fr.epf.speedycart.api.exception;
 
-public class ProductNotFoundException extends RuntimeException{
+public class ProductNotFoundException extends RuntimeException {
     public ProductNotFoundException() {
         super();
     }
-    public ProductNotFoundException(String message){
+
+    public ProductNotFoundException(String message) {
         super(message);
     }
 }

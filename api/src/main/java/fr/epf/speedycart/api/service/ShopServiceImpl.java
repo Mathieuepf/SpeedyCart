@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class ShopServiceImpl implements ShopService{
+public class ShopServiceImpl implements ShopService {
     @Autowired
     ShopDao shopDao;
 
@@ -24,17 +24,14 @@ public class ShopServiceImpl implements ShopService{
     ProductDao productDao;
 
     @Autowired
-    ProductService productService;
-
-    @Autowired
     AddressService addressService;
 
     @Override
     public Shop saveShopData(@Valid Shop shop) {
         //create Address if it doesn't exist
-        try{
+        try {
             addressService.getAddressData(shop.getAddress().getId());
-        }catch(AddressNotFoundException e){
+        } catch (AddressNotFoundException e) {
             Address address = addressService.saveAddressData(shop.getAddress());
             shop.setAddress(address);
         }
@@ -56,7 +53,7 @@ public class ShopServiceImpl implements ShopService{
     @Override
     public List<Shop> getShopsData() {
         List<Shop> shops = shopDao.findAll();
-        if (shops.size() == 0){
+        if (shops.isEmpty()) {
             throw new ShopNotFoundException("No records");
         }
         return shops;
@@ -65,7 +62,7 @@ public class ShopServiceImpl implements ShopService{
     @Override
     public Shop getShopData(Long Id) {
         return shopDao.findById(Id)
-                .orElseThrow(()->new ShopNotFoundException("Invalid Id"));
+                .orElseThrow(() -> new ShopNotFoundException("Invalid Id"));
     }
 
     @Override
@@ -73,21 +70,18 @@ public class ShopServiceImpl implements ShopService{
         // check if the shop exists
         this.getShopData(Id);
         List<Product> products = productDao.findByShopId(Id);
-        if(products.size() == 0){
+        if (products.isEmpty()) {
             throw new ProductNotFoundException("No records");
         }
         return products;
     }
 
-    // TODO : make this function work
     @Override
     public void deleteShopData(Long Id) {
         //check if the shop exists
         Shop shop = this.getShopData(Id);
-        System.out.println("enter 1");
 
-        if (shop.getDisableSince() == null){
-            shopDao.save(shop);
+        if (shop.getDisableSince() == null) {
             shop.setDisableSince(LocalDateTime.now().plusMinutes(5));
             shopDao.save(shop);
         }

@@ -24,7 +24,7 @@ public class DeliveryPerson {
     @NotNull(message = "Last Name can not be null")
     private String lastname;
 
-    @Length(min= 3, max=50,
+    @Length(min = 3, max = 50,
             message = "Vehicle must be 3-50 characters")
     @NotNull(message = "Vehicle can not be null")
     private String vehicle;
@@ -41,6 +41,5 @@ public class DeliveryPerson {
 
     @ManyToOne
     @JoinColumn(name = "address_id")
-    @NotNull(message = "Address can not be null")
     private Address address;
 }

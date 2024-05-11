@@ -15,7 +15,7 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Length(min= 3, max=200,
+    @Length(min = 3, max = 200,
             message = "Description must be 3-200 characters")
     @NotNull(message = "Description can not be null")
     private String description;

@@ -2,7 +2,6 @@ package fr.epf.speedycart.api.controller;
 
 
 import fr.epf.speedycart.api.model.Product;
-import fr.epf.speedycart.api.model.User;
 import fr.epf.speedycart.api.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class ProductController {
@@ -21,7 +19,7 @@ public class ProductController {
     private ProductService productService;
 
     @PostMapping("/product")
-    public ResponseEntity<Product> saveProduct(@RequestBody @Valid Product product){
+    public ResponseEntity<Product> saveProduct(@RequestBody @Valid Product product) {
         Product productAdded = productService.saveProductData(product);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -32,14 +30,22 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public List<Product> getListProduct() { return productService.getProductsData(); }
+    public List<Product> getListProduct() {
+        return productService.getProductsData();
+    }
 
     @GetMapping("/product/{id}")
-    public Product getProductById(@PathVariable long id) { return productService.getProductData(id); }
+    public Product getProductById(@PathVariable long id) {
+        return productService.getProductData(id);
+    }
 
     @PutMapping("/product")
-    public Product setProduct(@RequestBody @Valid Product product){ return productService.updateProductData(product); }
+    public Product setProduct(@RequestBody @Valid Product product) {
+        return productService.updateProductData(product);
+    }
 
     @DeleteMapping("/product/{id}")
-    public void delProductById(@PathVariable long id){ productService.deleteProductData(id); }
+    public void delProductById(@PathVariable long id) {
+        productService.deleteProductData(id);
+    }
 }

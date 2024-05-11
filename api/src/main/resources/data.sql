@@ -23,10 +23,10 @@ INSERT INTO Admin (description) VALUES
 ('Sales Manager'),
 ('HR Manager');
 
-INSERT INTO Client (id, firstname, lastname, active_since, disable_since, date_of_birth) VALUES
-(1, 'Alice', 'Jones', '2024-05-03 15:00:00', NULL, '1995-08-10'),
-(2, 'Bob', 'Smith', '2024-05-03 14:00:00', NULL, '1992-03-25'),
-(3, 'Emma', 'Davis', '2024-05-03 13:00:00', NULL, '1988-11-30');
+INSERT INTO Client (firstname, lastname, active_since, disable_since, date_of_birth) VALUES
+('Alice', 'Jones', '2024-05-03 15:00:00', NULL, '1995-08-10'),
+('Bob', 'Smith', '2024-05-03 14:00:00', NULL, '1992-03-25'),
+('Emma', 'Davis', '2024-05-03 13:00:00', NULL, '1988-11-30');
 
 INSERT INTO client_address (address_id, client_id) VALUES
 (1, 1),

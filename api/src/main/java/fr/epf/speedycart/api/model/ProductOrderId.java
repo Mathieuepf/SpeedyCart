@@ -1,6 +1,7 @@
 package fr.epf.speedycart.api.model;
 
 import lombok.Data;
+
 import java.io.Serializable;
 
 @Data

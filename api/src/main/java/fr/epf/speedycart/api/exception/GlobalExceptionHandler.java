@@ -14,17 +14,27 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ShopNotFoundException.class)
-    public ResponseEntity<String> handleProductNotFoundException(ShopNotFoundException e) {
+    public ResponseEntity<String> handleShopNotFoundException(ShopNotFoundException e) {
         return new ResponseEntity<>("Shop not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(AddressNotFoundException.class)
-    public ResponseEntity<String> handleProductNotFoundException(AddressNotFoundException e) {
+    public ResponseEntity<String> handleAddressNotFoundException(AddressNotFoundException e) {
         return new ResponseEntity<>("Address not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException e) {
+        return new ResponseEntity<>("User not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UserException.class)
+    public ResponseEntity<String> handleUserException(UserException e) {
+        return new ResponseEntity<>("Invalid User: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> exceptionHandler(Exception e){
+    public ResponseEntity<String> exceptionHandler(Exception e) {
         return new ResponseEntity<>("Invalid statement: " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
