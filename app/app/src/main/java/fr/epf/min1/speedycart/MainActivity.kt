@@ -1,8 +1,10 @@
 package fr.epf.min1.speedycart
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -11,46 +13,29 @@ import fr.epf.min1.speedycart.ui.viewmodels.ClientViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import fr.epf.min1.speedycart.data.Client
+import fr.epf.min1.speedycart.data.click
+import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
+import fr.epf.min1.speedycart.ui.activities.LoginActivity
 
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var viewModel: ClientViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val nameTextView = findViewById<TextView>(R.id.textView)
-        val firstnameTextView = findViewById<TextView>(R.id.textView2)
+        val loginButton = findViewById<Button>(R.id.main_login_button)
+        val userDetailsButton = findViewById<Button>(R.id.main_user_details_button)
 
-        viewModel = ViewModelProvider(this)[ClientViewModel::class.java]
-
-        // Observer clientUiState
-        lifecycleScope.launchWhenStarted {
-            viewModel.clientUiState.collect { state ->
-                when (state) {
-                    is ClientUiState.Success -> {
-                        //nameTextView.text = state.clients
-                        var json = state.clients
-
-                        val type = object : TypeToken<List<Client>>() {}.type
-                        var data = Gson().fromJson<List<Client>>(json, type)
-                        nameTextView.text = data.get(0).firstname
-                    }
-                    is ClientUiState.Loading -> {
-                        nameTextView.text = "Loading..."
-                    }
-                    is ClientUiState.Error -> {
-                        nameTextView.text = "Error"
-                    }
-                }
-            }
+        loginButton.click {
+            val intent = Intent(this,LoginActivity::class.java)
+            startActivity(intent)
         }
 
-        // Trigger API call
-        viewModel.getSpeedyCartClients()
-        firstnameTextView.text = "llllll\n llll"
+        userDetailsButton.click {
+            val intent = Intent(this,ClientAccountActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

@@ -1,9 +1,10 @@
-package fr.epf.min1.speedycart
+package fr.epf.min1.speedycart.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import fr.epf.min1.speedycart.R
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
