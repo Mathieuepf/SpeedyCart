@@ -21,6 +21,6 @@
     <string name="loading">Loading...</string>
     <string name="error">Error</string>
     <string name="login">login</string>
-    <string name="shop">shop</string>
-    <string name="product">product</string>
+    <string name="shop_main_textview_text">Magasins disponibles</string>
+    <string name="product_main_textview_text">Produits disponibles</string>
 </resources>
