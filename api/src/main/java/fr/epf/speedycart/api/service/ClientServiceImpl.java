@@ -1,5 +1,6 @@
 package fr.epf.speedycart.api.service;
 
+import fr.epf.speedycart.api.exception.UserException;
 import fr.epf.speedycart.api.exception.UserNotFoundException;
 import fr.epf.speedycart.api.model.Client;
 import fr.epf.speedycart.api.repository.ClientDao;
@@ -23,12 +24,14 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void deleteClientData(Long id) {
         //check if the client exist
-        Client client = clientDao.findById(id)
-                .orElseThrow(() -> new UserNotFoundException("Client Invalid Id"));
+        Client client = clientDao.findById(id).orElseThrow(
+                () -> new UserNotFoundException("Client Invalid Id"));
 
-        if (client.getDisableSince() == null) {
-            client.setDisableSince(LocalDateTime.now().plusMinutes(5));
-            clientDao.save(client);
+        if (client.getDisableSince() != null) {
+            throw new UserException("Client is already disabled");
         }
+
+        client.setDisableSince(LocalDateTime.now().plusMinutes(5));
+        clientDao.save(client);
     }
 }

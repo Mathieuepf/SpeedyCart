@@ -2,6 +2,7 @@ package fr.epf.speedycart.api.service;
 
 import fr.epf.speedycart.api.exception.ProductNotFoundException;
 import fr.epf.speedycart.api.exception.ShopNotFoundException;
+import fr.epf.speedycart.api.exception.UserException;
 import fr.epf.speedycart.api.model.Product;
 import fr.epf.speedycart.api.repository.ProductDao;
 import fr.epf.speedycart.api.repository.ShopDao;
@@ -36,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> getProductsData() {
         List<Product> products = productDao.findAll();
-        if (products.size() == 0) {
+        if (products.isEmpty()) {
             throw new ProductNotFoundException("No records");
         }
         return products;
@@ -68,10 +69,14 @@ public class ProductServiceImpl implements ProductService {
         // check if the product is linked to any order
         boolean linkedToOrder = productOrderService.existsByProductData(product);
         if (linkedToOrder) {
-            if (product.getDisableSince() == null) {
-                product.setDisableSince(LocalDateTime.now());
-                productDao.save(product);
+
+            if (product.getDisableSince() != null) {
+                throw new UserException("Product is already disabled");
             }
+
+            product.setDisableSince(LocalDateTime.now());
+            productDao.save(product);
+
         } else {
             productDao.delete(product);
         }

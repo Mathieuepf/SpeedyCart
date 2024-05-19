@@ -1,5 +1,6 @@
 package fr.epf.speedycart.api.service;
 
+import fr.epf.speedycart.api.exception.UserException;
 import fr.epf.speedycart.api.exception.UserNotFoundException;
 import fr.epf.speedycart.api.model.DeliveryPerson;
 import fr.epf.speedycart.api.repository.DeliveryPersonDao;
@@ -12,8 +13,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
@@ -56,5 +56,16 @@ public class DeliveryPersonServiceTest {
 
         when(deliveryPersonDao.findById(id)).thenReturn(Optional.empty());
         assertThrows(UserNotFoundException.class, () -> deliveryPersonService.deleteDeliveryPersonData(id));
+    }
+
+    @Test
+    public void deleteDeliveryPersonData_AlreadyDisabled() {
+        Long deliveryPersonId = 0L;
+        DeliveryPerson deliveryPerson = new DeliveryPerson();
+        deliveryPerson.setId(deliveryPersonId);
+        deliveryPerson.setDisableSince(LocalDateTime.now().minusDays(1));
+
+        when(deliveryPersonDao.findById(deliveryPersonId)).thenReturn(Optional.of(deliveryPerson));
+        assertThrows(UserException.class, () -> deliveryPersonService.deleteDeliveryPersonData(deliveryPersonId));
     }
 }

@@ -1,5 +1,6 @@
 package fr.epf.speedycart.api.service;
 
+import fr.epf.speedycart.api.exception.UserException;
 import fr.epf.speedycart.api.exception.UserNotFoundException;
 import fr.epf.speedycart.api.model.Client;
 import fr.epf.speedycart.api.repository.ClientDao;
@@ -56,5 +57,16 @@ public class ClientServiceTest {
 
         when(clientDao.findById(id)).thenReturn(Optional.empty());
         assertThrows(UserNotFoundException.class, () -> clientService.deleteClientData(id));
+    }
+
+    @Test
+    public void deleteClientDataAlreadyDisabledTest() {
+        Long Id = 0L;
+        Client client = new Client();
+        client.setId(Id);
+        client.setDisableSince(LocalDateTime.now().minusDays(1));
+
+        when(clientDao.findById(Id)).thenReturn(Optional.of(client));
+        assertThrows(UserException.class, () -> clientService.deleteClientData(Id));
     }
 }

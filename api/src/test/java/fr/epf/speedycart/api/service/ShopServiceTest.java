@@ -2,6 +2,8 @@ package fr.epf.speedycart.api.service;
 
 import fr.epf.speedycart.api.exception.ProductNotFoundException;
 import fr.epf.speedycart.api.exception.ShopNotFoundException;
+import fr.epf.speedycart.api.exception.UserException;
+import fr.epf.speedycart.api.exception.UserNotFoundException;
 import fr.epf.speedycart.api.model.Address;
 import fr.epf.speedycart.api.model.Product;
 import fr.epf.speedycart.api.model.Shop;
@@ -13,14 +15,14 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class ShopServiceTest {
@@ -114,5 +116,38 @@ public class ShopServiceTest {
         when(shopDao.findById(id)).thenReturn(Optional.of(shop));
         when(productDao.findByShopId(id)).thenReturn(new ArrayList<>());
         assertThrows(ProductNotFoundException.class, () -> shopService.getProductsFromShopData(id));
+    }
+
+    @Test
+    public void deleteShopDataTest() {
+        Long id = 0L;
+        Shop shop = new Shop();
+        shop.setId(id);
+
+        when(shopDao.findById(id)).thenReturn(Optional.of(shop));
+        shopService.deleteShopData(id);
+
+        verify(shopDao, times(1)).findById(id);
+        verify(shopDao, times(1)).save(shop);
+        assertNotNull(shop.getDisableSince());
+    }
+
+    @Test
+    public void deleteShopDataAlreadyDisabledTest() {
+        Long id = 0L;
+        Shop shop = new Shop();
+        shop.setId(id);
+        shop.setDisableSince(LocalDateTime.now().minusDays(1));
+
+        when(shopDao.findById(id)).thenReturn(Optional.of(shop));
+        assertThrows(UserException.class, () -> shopService.deleteShopData(id));
+    }
+
+    @Test
+    public void deleteShopDataShopNotFoundTest() {
+        Long id = 0L;
+
+        when(shopDao.findById(id)).thenReturn(Optional.empty());
+        assertThrows(ShopNotFoundException.class, () -> shopService.deleteShopData(id));
     }
 }

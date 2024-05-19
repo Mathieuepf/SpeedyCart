@@ -2,6 +2,7 @@ package fr.epf.speedycart.api.service;
 
 import fr.epf.speedycart.api.exception.ProductNotFoundException;
 import fr.epf.speedycart.api.exception.ShopNotFoundException;
+import fr.epf.speedycart.api.exception.UserException;
 import fr.epf.speedycart.api.model.Product;
 import fr.epf.speedycart.api.model.Shop;
 import fr.epf.speedycart.api.repository.ProductDao;
@@ -174,5 +175,17 @@ public class ProductServiceTest {
 
         productService.deleteProductData(id);
         assertEquals(product.getDisableSince().getDayOfYear(), LocalDateTime.now().plusMinutes(5).getDayOfYear());
+    }
+
+    @Test
+    public void deleteProductDataAlreadyDisabledTest() {
+        Long id = 0L;
+        Product product = new Product();
+        product.setId(id);
+        product.setDisableSince(LocalDateTime.now().minusDays(1));
+
+        when(productDao.findById(id)).thenReturn(Optional.of(product));
+        when(productOrderService.existsByProductData(product)).thenReturn(true);
+        assertThrows(UserException.class, () -> productService.deleteProductData(id));
     }
 }

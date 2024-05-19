@@ -1,5 +1,6 @@
 package fr.epf.speedycart.api.service;
 
+import fr.epf.speedycart.api.exception.UserException;
 import fr.epf.speedycart.api.exception.UserNotFoundException;
 import fr.epf.speedycart.api.model.DeliveryPerson;
 import fr.epf.speedycart.api.repository.DeliveryPersonDao;
@@ -26,9 +27,11 @@ public class DeliveryPersonServiceImpl implements DeliveryPersonService {
         DeliveryPerson deliveryPerson = deliveryPersonDao.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("Delivery Person Invalid Id"));
 
-        if (deliveryPerson.getDisableSince() == null) {
-            deliveryPerson.setDisableSince(LocalDateTime.now().plusMinutes(5));
-            deliveryPersonDao.save(deliveryPerson);
+        if (deliveryPerson.getDisableSince() != null) {
+            throw new UserException("Delivery Person is already disabled");
         }
+
+        deliveryPerson.setDisableSince(LocalDateTime.now().plusMinutes(5));
+        deliveryPersonDao.save(deliveryPerson);
     }
 }

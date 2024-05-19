@@ -3,6 +3,7 @@ package fr.epf.speedycart.api.service;
 import fr.epf.speedycart.api.exception.AddressNotFoundException;
 import fr.epf.speedycart.api.exception.ProductNotFoundException;
 import fr.epf.speedycart.api.exception.ShopNotFoundException;
+import fr.epf.speedycart.api.exception.UserException;
 import fr.epf.speedycart.api.model.Address;
 import fr.epf.speedycart.api.model.Product;
 import fr.epf.speedycart.api.model.Shop;
@@ -81,9 +82,11 @@ public class ShopServiceImpl implements ShopService {
         //check if the shop exists
         Shop shop = this.getShopData(Id);
 
-        if (shop.getDisableSince() == null) {
-            shop.setDisableSince(LocalDateTime.now().plusMinutes(5));
-            shopDao.save(shop);
+        if (shop.getDisableSince() != null) {
+            throw new UserException("Client is already disabled");
         }
+
+        shop.setDisableSince(LocalDateTime.now().plusMinutes(5));
+        shopDao.save(shop);
     }
 }
