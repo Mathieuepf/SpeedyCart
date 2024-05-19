@@ -1,7 +1,10 @@
 package fr.epf.min1.speedycart.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.util.Date
 
+@Parcelize
 data class Shop(
     val shopId: Long,
     val name: String,
@@ -10,7 +13,7 @@ data class Shop(
     val disableSince: Date?,
     val siret: String,
     val address: String
-    ) {
+    ) : Parcelable{
 
     companion object{
         fun generate1Shop() = Shop(12,
