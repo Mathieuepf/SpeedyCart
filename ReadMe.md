@@ -27,3 +27,7 @@ Pour l'application Android :
 Pour l'API : Consultez le [guide d'utilisation](api/README.md#guide-dutilisation) de l'API pour connaître les méthodes disponibles, leurs options et ce qu'elles retournent.
 
 Pour l'application Android: Consultez le [guide d'utilisation](app/ReadMe.md#guide-dutilisation) de l'application pour découvrir ses fonctionnalités et comment les utiliser.
+
+## Contribution
+
+Pour contribuer à ce projet, veuillez suivre les instructions détaillées dans le fichier [CONTRIBUTING.md](CONTRIBUTING.md).
