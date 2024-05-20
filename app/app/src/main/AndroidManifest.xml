@@ -16,6 +16,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.SignupDeliveryPersonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.SignupShopActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.SignupClientActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.ClientAccountActivity"
             android:exported="false" />
         <activity
@@ -26,7 +35,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.activities.LoginActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

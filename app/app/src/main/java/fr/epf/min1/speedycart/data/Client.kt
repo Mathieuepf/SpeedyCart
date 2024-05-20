@@ -1,7 +1,11 @@
 package fr.epf.min1.speedycart.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 import java.util.Date
 
+@Parcelize
 data class Client(
     val clientId : Long,
     val firstname : String,
@@ -9,7 +13,7 @@ data class Client(
     val activefrom : Date ?,
     val desactivefrom : Date ?,
     val clientDOB : Date ?
-){
+) : Parcelable{
     companion object{
         fun generate1Client() = Client(45,
             "John2",

@@ -11,7 +11,7 @@
     <string name="passwordretype_textview_signup_screen_text">Entrez à nouveau le mot de passe</string>
     <string name="usertype_textview_signup_screen_text">Vous êtes :</string>
     <string name="title_textview_signup_screen_text">Inscription</string>
-    <string name="button_signup_screen_text">Valider</string>
+    <string name="button_client_signup_screen_text">S\'enregistrer en tant que client</string>
     <string name="title_textview_userinfo_screen_text">Mon compte client</string>
     <string name="lastname_textview_userinfo_screen_text">Nom :</string>
     <string name="firstname_textview_userinfo_screen_text">Prénom :</string>
@@ -23,4 +23,6 @@
     <string name="login">login</string>
     <string name="shop_main_textview_text">Magasins disponibles</string>
     <string name="product_main_textview_text">Produits disponibles</string>
+    <string name="button_shop_signup_screen_text">S\'enregistrer en tant que vendeur/magasin</string>
+    <string name="button_delivery_person_signup_screen_text">S\'enregistrer en tant que livreur</string>
 </resources>

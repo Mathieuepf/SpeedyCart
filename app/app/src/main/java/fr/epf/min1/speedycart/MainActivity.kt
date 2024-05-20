@@ -25,6 +25,7 @@ import fr.epf.min1.speedycart.data.ShopAdapter
 import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
 import fr.epf.min1.speedycart.ui.activities.LoginActivity
+import fr.epf.min1.speedycart.ui.activities.SignupActivity
 
 private const val TAG = "MainActivity"
 
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         shopCartButton.click { //goal Activity will change to CartActivity
-            val intent = Intent(this, ClientAccountActivity::class.java)
+            val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
     }
