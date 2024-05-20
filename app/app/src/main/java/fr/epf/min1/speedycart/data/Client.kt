@@ -12,7 +12,8 @@ data class Client(
     val lastname : String,
     val activefrom : Date ?,
     val desactivefrom : Date ?,
-    val clientDOB : Date ?
+    val clientDOB : Date ?,
+    val address: Address
 ) : Parcelable{
     companion object{
         fun generate1Client() = Client(45,
@@ -20,6 +21,7 @@ data class Client(
             "Doe2",
             null,
             null,
-            null)
+            null,
+            Address.generate1Address())
     }
 }

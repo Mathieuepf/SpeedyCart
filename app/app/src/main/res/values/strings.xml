@@ -25,4 +25,14 @@
     <string name="product_main_textview_text">Produits disponibles</string>
     <string name="button_shop_signup_screen_text">S\'enregistrer en tant que vendeur/magasin</string>
     <string name="button_delivery_person_signup_screen_text">S\'enregistrer en tant que livreur</string>
+    <string name="title_client_signup_screen_textview_text">Inscription</string>
+    <string name="lastname_textview_client_signup_screen_text">Nom de famille</string>
+    <string name="firstname_textview_client_signup_screen_text">Prénom</string>
+    <string name="dob_textview_client_signup_screen_text">Date de naissance</string>
+    <string name="adress_number_textview_client_signup_screen_text">Numéro</string>
+    <string name="adress_name_textview_client_signup_screen_text">Nom d\'adresse</string>
+    <string name="postal_code_textview_client_signup_screen_text">Code postale</string>
+    <string name="city_textview_client_signup_screen_text">Commune</string>
+    <string name="create_button_client_signup_screen_text">Créer le compte</string>
+    <string name="dob_button_client_signup_screen_text">Choisir une date</string>
 </resources>
