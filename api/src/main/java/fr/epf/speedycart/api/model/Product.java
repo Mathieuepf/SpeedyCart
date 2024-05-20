@@ -14,7 +14,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Pattern(regexp = "[A-Za-z]{1,20}",
+    @Pattern(regexp = "[A-Za-z ]{1,20}",
             message = "First Name must be 1-20 characters and only A-Z or a-z")
     @NotNull(message = "Name can not be null")
     private String name;
