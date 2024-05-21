@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_product_info">
+
+    <ImageView
+        android:id="@+id/image_product_info"
+        android:layout_width="239dp"
+        android:layout_height="259dp"
+        android:layout_marginTop="24dp"
+        android:src="@tools:sample/avatars"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/name_product_info"
+        android:layout_width="325dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="24dp"
+        android:text="NomProduit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_product_info" />
+
+    <TextView
+        android:id="@+id/price_product_info"
+        android:layout_width="86dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="8dp"
+        android:text="prix"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name_product_info" />
+
+    <TextView
+        android:id="@+id/description_prduct_info"
+        android:layout_width="361dp"
+        android:layout_height="159dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/price_product_info" />
+
+    <Button
+        android:id="@+id/add_to_cart_button_info_product"
+        android:layout_width="281dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/orange"
+        android:text="@string/button_add_to_cart_text"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_prduct_info" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -23,4 +23,5 @@
     <string name="login">login</string>
     <string name="shop">shop</string>
     <string name="product">product</string>
+    <string name="button_add_to_cart_text">Ajouter au panier</string>
 </resources>
