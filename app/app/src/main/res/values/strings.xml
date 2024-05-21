@@ -44,4 +44,15 @@
     <string name="postal_code_textview_shop_signup_screen_text">Code postale</string>
     <string name="city_textview_shop_signup_screen_text">Commune</string>
     <string name="create_button_shop_signup_screen_text">Créer le compte</string>
+    <string name="title_textview_deliveryperson_signup_screen_text">Inscription</string>
+    <string name="lastname_textview_deliveryperson_signup_screen_text">Nom de famille</string>
+    <string name="firstname_textview_deliveryperson_signup_screen_text">Prénom</string>
+    <string name="dob_textview_deliveryperson_signup_screen_text">Date de naissance</string>
+    <string name="dob_button_deliveryperson_signup_screen_text">Choisir une date</string>
+    <string name="adress_number_textview_deliveryperson_signup_screen_text">Numéro</string>
+    <string name="adress_name_textview_deliveryperson_signup_screen_text">Nom d\'adresse</string>
+    <string name="postal_code_textview_deliveryperson_signup_screen_text">Code postale</string>
+    <string name="city_textview_deliveryperson_signup_screen_text">Commune</string>
+    <string name="create_button_deliveryperson_signup_screen_text">Créer le compte</string>
+    <string name="vehicle_textview_deliveryperson_signup_screen_text">Véhicule</string>
 </resources>

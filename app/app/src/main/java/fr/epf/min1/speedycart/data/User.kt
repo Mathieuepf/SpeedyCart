@@ -10,7 +10,7 @@ data class User(
     val password: String?,
     val client: Client?,
     val shop: Shop?,
-    val deliveryPerson: String?,
+    val deliveryPerson:DeliveryPerson?,
     val admin: String?
 ) : Parcelable{
     companion object{
