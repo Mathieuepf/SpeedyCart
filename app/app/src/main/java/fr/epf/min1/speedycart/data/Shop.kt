@@ -12,7 +12,7 @@ data class Shop(
     val activeSince: Date?,
     val disableSince: Date?,
     val siret: String,
-    val address: String
+    val address: Address
     ) : Parcelable{
 
     companion object{
@@ -22,7 +22,7 @@ data class Shop(
             Date(1644677500000),
             null,
             "818 582 496 00027",
-            "12 Rue de Dupond, 35210 Montjoie"
+            Address.generate1Address()
         )
 
         fun generateListShop(): List<Shop>{
@@ -34,7 +34,7 @@ data class Shop(
                 Date(1644677500000),
                 null,
                 "818 582 496 00027",
-                "12 Rue de Dupond, 35210 Montjoie"
+                Address.generate1Address()
             ))
             shopList.add(Shop(
                 2,
@@ -43,7 +43,7 @@ data class Shop(
                 Date(1644677500000),
                 null,
                 "818 582 496 00027",
-                "12 Rue de Dupond, 35210 Montjoie"
+                Address.generate1Address()
             ))
             shopList.add(Shop(
                 3,
@@ -52,7 +52,7 @@ data class Shop(
                 Date(1644677500000),
                 null,
                 "818 582 496 00027",
-                "12 Rue de Dupond, 35210 Montjoie"
+                Address.generate1Address()
             ))
             shopList.add(Shop(
                 4,
@@ -61,7 +61,7 @@ data class Shop(
                 Date(1644677500000),
                 null,
                 "818 582 496 00027",
-                "12 Rue de Dupond, 35210 Montjoie"
+                Address.generate1Address()
             ))
             return shopList.toList()
 

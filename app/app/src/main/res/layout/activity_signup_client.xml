@@ -72,7 +72,7 @@
         app:layout_constraintVertical_bias="0.305" />
 
     <TextView
-        android:id="@+id/client_signup_screen_dob_textview"
+        android:id="@+id/client_signup_screen_siret_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dob_textview_client_signup_screen_text"

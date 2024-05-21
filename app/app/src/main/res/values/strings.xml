@@ -35,4 +35,13 @@
     <string name="city_textview_client_signup_screen_text">Commune</string>
     <string name="create_button_client_signup_screen_text">Créer le compte</string>
     <string name="dob_button_client_signup_screen_text">Choisir une date</string>
+    <string name="title_shop_signup_screen_textview_text">Inscription</string>
+    <string name="name_textview_shop_signup_screen_text">Nom du vendeur/magasin</string>
+    <string name="description_textview_shop_signup_screen_text">Description</string>
+    <string name="siret_textview_shop_signup_screen_text">Numéro de SIRET</string>
+    <string name="address_number_textview_shop_signup_screen_text">Numéro</string>
+    <string name="address_name_textview_shop_signup_screen_text">Nom d\'adresse</string>
+    <string name="postal_code_textview_shop_signup_screen_text">Code postale</string>
+    <string name="city_textview_shop_signup_screen_text">Commune</string>
+    <string name="create_button_shop_signup_screen_text">Créer le compte</string>
 </resources>

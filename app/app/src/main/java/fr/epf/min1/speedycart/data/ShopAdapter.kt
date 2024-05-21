@@ -33,7 +33,7 @@ class ShopAdapter(val shops: List<Shop>): RecyclerView.Adapter<ShopViewHolder>()
         nameTextView.text = shop.name
 
         val adressTextView = view.findViewById<TextView>(R.id.adress_shop_card_textview)
-        adressTextView.text = shop.address
+        adressTextView.text = "${shop.address.number} ${shop.address.road} ${shop.address.postalCode} ${shop.address.city}"
 
         val shopCard = view.findViewById<CardView>(R.id.shop_card_cardview)
         shopCard.click {
