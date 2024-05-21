@@ -16,7 +16,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".activity_product_info"
+            android:name=".ui.activities.activity_shop_info"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.activity_product_info"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ClientAccountActivity"
