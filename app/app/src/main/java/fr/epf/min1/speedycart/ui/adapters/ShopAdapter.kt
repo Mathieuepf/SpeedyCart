@@ -1,4 +1,4 @@
-package fr.epf.min1.speedycart.data
+package fr.epf.min1.speedycart.ui.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.R
+import fr.epf.min1.speedycart.data.Shop
+import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
 
 class ShopViewHolder(item: View) : RecyclerView.ViewHolder(item)
@@ -39,7 +40,7 @@ class ShopAdapter(val shops: List<Shop>): RecyclerView.Adapter<ShopViewHolder>()
         shopCard.click {
             with(it.context){//goal Activity will be ShopActivity
                 val intent = Intent(this, ClientAccountActivity::class.java)
-                intent.putExtra(SHOP_EXTRA, shop)
+                intent.putExtra(fr.epf.min1.speedycart.ui.adapters.SHOP_EXTRA, shop)
                 startActivity(intent)
             }
         }
