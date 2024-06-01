@@ -1,4 +1,4 @@
-package fr.epf.min1.speedycart.data
+package fr.epf.min1.speedycart.ui.adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.R
+import fr.epf.min1.speedycart.data.Product
+import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
 
 class ProductViewHolder(item: View): RecyclerView.ViewHolder(item)
@@ -43,7 +45,7 @@ class ProductAdapter(val products: List<Product>): RecyclerView.Adapter<ProductV
         productCard.click {
             with(it.context){
                 val intent = Intent(this, ClientAccountActivity::class.java)
-                intent.putExtra(PRODUCT_EXTRA, product)
+                intent.putExtra(fr.epf.min1.speedycart.ui.adapters.PRODUCT_EXTRA, product)
                 startActivity(intent)
             }
         }
