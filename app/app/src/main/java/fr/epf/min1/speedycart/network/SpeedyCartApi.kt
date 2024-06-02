@@ -1,17 +1,37 @@
 package fr.epf.min1.speedycart.network
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
-private const val BASE_URL = "http://192.168.1.14:9090"
+private const val BASE_URL = "http://192.168.8.163:9090"
 
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(ScalarsConverterFactory.create())
-    .baseUrl(BASE_URL)
-    .build()
+class Retrofit {
+    companion object {
+        private val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
 
-object  SpeedyCartApi{
-    val retrofitService : SpeedyCartApiService by lazy {
-        retrofit.create(SpeedyCartApiService::class.java)
+        private val moshi = Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .add(LocalDateTimeAdapter())
+            .build()
+
+        private val client = OkHttpClient.Builder()
+            .addInterceptor(httpLoggingInterceptor)
+            .build()
+
+        private val retrofit = Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(client)
+            .build()
+
+        fun getInstance(): Retrofit {
+            return retrofit
+        }
     }
 }
