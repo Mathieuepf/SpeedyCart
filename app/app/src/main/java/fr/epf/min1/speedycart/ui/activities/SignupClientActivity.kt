@@ -25,9 +25,12 @@ class SignupClientActivity : AppCompatActivity() {
         val lastNameEditText = findViewById<EditText>(R.id.client_signup_screen_lastname_edittext)
         val firstNameEditText = findViewById<EditText>(R.id.client_signup_screen_firstname_edittext)
         val dobButton = findViewById<Button>(R.id.client_signup_screen_dob_button)
-        val addressNumberEditText = findViewById<EditText>(R.id.client_signup_screen_adress_number_edittext)
-        val addressNameEditText = findViewById<EditText>(R.id.client_signup_screen_adress_name_edittext)
-        val addressPostalCodeEditText = findViewById<EditText>(R.id.client_signup_screen_postal_code_edittext)
+        val addressNumberEditText =
+            findViewById<EditText>(R.id.client_signup_screen_adress_number_edittext)
+        val addressNameEditText =
+            findViewById<EditText>(R.id.client_signup_screen_adress_name_edittext)
+        val addressPostalCodeEditText =
+            findViewById<EditText>(R.id.client_signup_screen_postal_code_edittext)
         val addressCityEditText = findViewById<EditText>(R.id.client_signup_screen_city_edittext)
         val createButton = findViewById<Button>(R.id.client_signup_screen_create_button)
 
@@ -44,31 +47,7 @@ class SignupClientActivity : AppCompatActivity() {
 
         createButton.click {
             epochDate = datePicker.selection?.toLong() ?: 0L
-            val newUser = User(
-                1,
-                user?.mail,
-                user?.password,
-                Client(
-                    1,
-                    firstNameEditText.text.toString(),
-                    lastNameEditText.text.toString(),
-                    Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)),
-                    null,
-                    Date.from(Instant.ofEpochMilli(epochDate)),
-                    Address(
-                        1,
-                        addressNumberEditText.text.toString(),
-                        addressNameEditText.text.toString(),
-                        addressPostalCodeEditText.text.toString(),
-                        addressCityEditText.text.toString(),
-                        null
-                    )
-                ),
-                null,
-                null,
-                null
-            )
-
+            val newUser = User.generate1User()
             Log.d("client_create", newUser.toString())
         }
     }

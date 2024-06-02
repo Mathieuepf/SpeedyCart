@@ -23,13 +23,19 @@ class SignupDeliveryPersonActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup_delivery_person)
 
-        val lastNameEditText = findViewById<EditText>(R.id.deliveryperson_signup_screen_lastname_edittext)
-        val firstNameEditText = findViewById<EditText>(R.id.deliveryperson_signup_screen_firstname_edittext)
+        val lastNameEditText =
+            findViewById<EditText>(R.id.deliveryperson_signup_screen_lastname_edittext)
+        val firstNameEditText =
+            findViewById<EditText>(R.id.deliveryperson_signup_screen_firstname_edittext)
         val dobButton = findViewById<Button>(R.id.deliveryperson_signup_screen_dob_button)
-        val vehicleEditText = findViewById<EditText>(R.id.deliveryperson_signup_screen_vehicle_edittext)
-        val addressNumberEditText = findViewById<EditText>(R.id.deliveryperson_signup_screen_adress_number_edittext)
-        val addressNameEditText = findViewById<EditText>(R.id.deliveryperson_signup_screen_adress_name_edittext)
-        val postalCodeEditText = findViewById<EditText>(R.id.deliveryperson_signup_screen_postal_code_edittext)
+        val vehicleEditText =
+            findViewById<EditText>(R.id.deliveryperson_signup_screen_vehicle_edittext)
+        val addressNumberEditText =
+            findViewById<EditText>(R.id.deliveryperson_signup_screen_adress_number_edittext)
+        val addressNameEditText =
+            findViewById<EditText>(R.id.deliveryperson_signup_screen_adress_name_edittext)
+        val postalCodeEditText =
+            findViewById<EditText>(R.id.deliveryperson_signup_screen_postal_code_edittext)
         val cityEditText = findViewById<EditText>(R.id.deliveryperson_signup_screen_city_edittext)
         val createButton = findViewById<Button>(R.id.deliveryperson_signup_screen_create_button)
 
@@ -46,31 +52,7 @@ class SignupDeliveryPersonActivity : AppCompatActivity() {
 
         createButton.click {
             epochDate = datePicker.selection?.toLong() ?: 0L
-            val newUser = User(
-                1,
-                user?.mail,
-                user?.password,
-                null,
-                null,
-                DeliveryPerson(
-                    1,
-                    firstNameEditText.text.toString(),
-                    lastNameEditText.text.toString(),
-                    vehicleEditText.text.toString(),
-                    LocalDateTime.ofInstant(Instant.ofEpochMilli(epochDate), ZoneOffset.UTC),
-                    LocalDateTime.now(),
-                    null,
-                    Address(
-                        1,
-                        addressNumberEditText.text.toString(),
-                        addressNameEditText.text.toString(),
-                        postalCodeEditText.text.toString(),
-                        cityEditText.text.toString(),
-                        null
-                    )
-                ),
-                null
-            )
+            val newUser = User.generate1User()
 
             Log.d("deliveryperson_create", newUser.toString())
         }
