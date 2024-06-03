@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
+<<<<<<< Updated upstream
+=======
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.commit
@@ -14,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.add
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+>>>>>>> Stashed changes
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -47,8 +50,10 @@ class MainActivity : AppCompatActivity() {
         // fetch shop
         fetchShopInfo()
 
+<<<<<<< HEAD
         // fetch product
         fetchProductInfo()
+=======
         val shopList = Shop.generateListShop()
         Log.d("main", shopList.toString())
         val adapter = ShopAdapter(shopList)
@@ -74,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.main_product_fragmentcontainerview, fragment)
         transaction.commit()
+>>>>>>> 8267747 (refactor(app): Mise en place d'une nouvelle classe et XML pour utiliser un fragment sur la page d'accueil)
 
         loginButton.click {
             val intent = Intent(this, LoginActivity::class.java)
