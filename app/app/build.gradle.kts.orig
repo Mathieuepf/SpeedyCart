@@ -53,12 +53,24 @@ dependencies {
     implementation(libs.converter.moshi)
     implementation(libs.logging.interceptor)
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     // Moshi - to deserialize LocalDateTime
     implementation(libs.moshi)
     implementation(libs.moshi.kotlin)
     implementation(libs.moshi.adapters)
     implementation(libs.moshi.kotlin.codegen)
-
+=======
     // Fragment KTX
     implementation("androidx.fragment:fragment-ktx:1.2.5")
+>>>>>>> Stashed changes
+=======
+    // Fragment KTX
+    implementation("androidx.fragment:fragment-ktx:1.2.5")
+>>>>>>> Stashed changes
+=======
+    // Fragment KTX
+    implementation("androidx.fragment:fragment-ktx:1.2.5")
+>>>>>>> Stashed changes
 }
