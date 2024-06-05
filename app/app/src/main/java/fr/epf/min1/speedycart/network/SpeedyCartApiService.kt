@@ -16,4 +16,7 @@ interface SpeedyCartApiService {
 
     @GET("shop/{id}/products")
     suspend fun getProductsByShop(@Path("id") id: Long): Response<List<Product>>
+
+    @GET("products")
+    suspend fun getProducts(): Response<List<Product>>
 }
