@@ -58,4 +58,7 @@
     <string name="home_button_description">home button</string>
     <string name="cart_button_description">cart button</string>
     <string name="profil_button_decription">profil button</string>
+    <string name="shop_display_description_text">magasin de vente de proximité</string>
+    <string name="shop_display_address_text">34 rue de feuille</string>
+    <string name="shop_display_title_text">Intermarché</string>
 </resources>
