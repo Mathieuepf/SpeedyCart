@@ -16,7 +16,7 @@ class ShopViewHolder(item: View) : RecyclerView.ViewHolder(item)
 
 const val SHOP_EXTRA = "shop"
 
-class ShopAdapter(val shops: List<Shop>): RecyclerView.Adapter<ShopViewHolder>() {
+class ShopAdapter(val shops: List<Shop>) : RecyclerView.Adapter<ShopViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -38,7 +38,7 @@ class ShopAdapter(val shops: List<Shop>): RecyclerView.Adapter<ShopViewHolder>()
 
         val shopCard = view.findViewById<CardView>(R.id.shop_card_cardview)
         shopCard.click {
-            with(it.context){//goal Activity will be ShopActivity
+            with(it.context) {//TODO Activity will be ShopActivity
                 val intent = Intent(this, ClientAccountActivity::class.java)
                 intent.putExtra(fr.epf.min1.speedycart.ui.adapters.SHOP_EXTRA, shop)
                 startActivity(intent)
