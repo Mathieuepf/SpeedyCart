@@ -9,7 +9,7 @@ import fr.epf.min1.speedycart.network.Retrofit
 import fr.epf.min1.speedycart.network.SpeedyCartApiService
 import kotlinx.coroutines.runBlocking
 
-const val TAG = "ClientAccountActivity"
+private const val TAG = "ClientAccountActivity"
 
 class ClientAccountActivity : AppCompatActivity() {
 

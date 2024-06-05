@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.Shop
 import fr.epf.min1.speedycart.data.click
+import fr.epf.min1.speedycart.data.getCompleteAddress
 import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
+import fr.epf.min1.speedycart.ui.activities.ShopDisplayActivity
 
 class ShopViewHolder(item: View) : RecyclerView.ViewHolder(item)
 
@@ -34,13 +36,13 @@ class ShopAdapter(val shops: List<Shop>) : RecyclerView.Adapter<ShopViewHolder>(
         nameTextView.text = shop.name
 
         val adressTextView = view.findViewById<TextView>(R.id.adress_shop_card_textview)
-        adressTextView.text = "${shop.address.number} ${shop.address.road} ${shop.address.city}"
+        adressTextView.text = shop.getCompleteAddress()
 
         val shopCard = view.findViewById<CardView>(R.id.shop_card_cardview)
         shopCard.click {
-            with(it.context) {//TODO Activity will be ShopActivity
-                val intent = Intent(this, ClientAccountActivity::class.java)
-                intent.putExtra(fr.epf.min1.speedycart.ui.adapters.SHOP_EXTRA, shop)
+            with(it.context) {
+                val intent = Intent(this, ShopDisplayActivity::class.java)
+                intent.putExtra(SHOP_EXTRA, shop)
                 startActivity(intent)
             }
         }
