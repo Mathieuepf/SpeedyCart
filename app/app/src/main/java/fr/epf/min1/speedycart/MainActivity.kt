@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val loginButton = findViewById<Button>(R.id.main_login_button)
+        val loginButton = findViewById<Button>(R.id.main_search_button)
         val userDetailsButton = findViewById<ImageButton>(R.id.main_user_details_imagebutton)
         val shopCartButton = findViewById<ImageButton>(R.id.main_shop_cart_imagebutton)
 
