@@ -14,9 +14,12 @@ import fr.epf.min1.speedycart.ui.adapters.ProductAdapter
 import fr.epf.min1.speedycart.data.Shop
 import fr.epf.min1.speedycart.ui.adapters.ShopAdapter
 import fr.epf.min1.speedycart.data.click
+import fr.epf.min1.speedycart.network.Retrofit
+import fr.epf.min1.speedycart.network.SpeedyCartApiService
 import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
 import fr.epf.min1.speedycart.ui.activities.LoginActivity
 import fr.epf.min1.speedycart.ui.activities.SignupActivity
+import kotlinx.coroutines.runBlocking
 
 private const val TAG = "MainActivity"
 
@@ -32,37 +35,57 @@ class MainActivity : AppCompatActivity() {
         val userDetailsButton = findViewById<ImageButton>(R.id.main_user_details_imagebutton)
         val shopCartButton = findViewById<ImageButton>(R.id.main_shop_cart_imagebutton)
 
-        shopRecyclerView = findViewById<RecyclerView>(R.id.main_shop_recyclerview)
-        shopRecyclerView.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        val shopList = Shop.generateListShop()
-        Log.d("main", shopList.toString())
-        val adapter = ShopAdapter(shopList)
-        shopRecyclerView.adapter = adapter
+        // fetch shop
+        fetchShopInfo()
 
         productRecyclerView = findViewById<RecyclerView>(R.id.main_products_recyclerview)
         productRecyclerView.layoutManager =
             GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
 
         val productList = Product.generateListProduct()
-        Log.d("main", productList.toString())
+        Log.d(TAG, productList.toString())
         val prodadapter = ProductAdapter(productList)
         productRecyclerView.adapter = prodadapter
 
         loginButton.click {
-            val intent = Intent(this,LoginActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
         userDetailsButton.click {
-            val intent = Intent(this,ClientAccountActivity::class.java)
+            val intent = Intent(this, ClientAccountActivity::class.java)
             startActivity(intent)
         }
 
         shopCartButton.click { //goal Activity will change to CartActivity
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    fun fetchShopInfo() {
+        shopRecyclerView = findViewById<RecyclerView>(R.id.main_shop_recyclerview)
+        shopRecyclerView.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+
+        val clientService = Retrofit
+            .getInstance()
+            .create(SpeedyCartApiService::class.java)
+
+        runBlocking {
+            try {
+                val response = clientService.getShops()
+                if (response.isSuccessful && response.body() != null) {
+                    val shopList = response.body()!!
+                    Log.d(TAG, "$shopList")
+                    val adapter = ShopAdapter(shopList)
+                    shopRecyclerView.adapter = adapter
+                } else {
+                    Log.d(TAG, "call for shop list is empty or unsuccessful")
+                }
+            } catch (e: Exception) {
+                Log.d(TAG, e.toString())
+            }
         }
     }
 }
