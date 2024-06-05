@@ -16,19 +16,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activities.ShopAccountActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.DeliveryPersonAccountActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.activities.AdminAccountActivity"
-            android:exported="false" />
-        <activity
+<<<<<<< HEAD
             android:name=".ui.activities.ShopDisplayActivity"
-            android:exported="false" />
-        <activity 
+=======
             android:name=".ui.activities.ShopCartActivity"
+>>>>>>> eb67265 (feat(app): Mise en place front de la page de panier)
             android:exported="false" />
         <activity
             android:name=".ui.activities.SignupDeliveryPersonActivity"
