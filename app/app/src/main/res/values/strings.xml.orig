@@ -64,14 +64,17 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="textview_fragment_product_empty_text">Une erreur est survenue lors du chargement</string>
+<<<<<<< HEAD
     <string name="empty_shop_fragment_text">une erreur est survenue lors du chargement</string>
     <string name="logout_button_description">logout button</string>
     <string name="client_account_title">Compte Client</string>
     <string name="admin_account_title">Compte Admin</string>
     <string name="shop_account_title">Compte Boutique</string>
     <string name="delivery_person_account_title">Compte Livreur</string>
+=======
     <string name="name_textview_shop_cart_screen_text">Nom du destinataire</string>
     <string name="adresse_textview_shop_cart_screen_text">Adresse de livraison</string>
     <string name="product_list_textview_shop_cart_screen_text">Produits dans le panier</string>
     <string name="payment_button_shop_cart_screen_text">Payer</string>
+>>>>>>> 07234f1 (feat(app): Mise en place front de la page de panier)
 </resources>
