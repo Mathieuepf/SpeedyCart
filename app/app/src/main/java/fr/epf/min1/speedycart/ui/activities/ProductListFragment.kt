@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.Product
-import fr.epf.min1.speedycart.data.ProductAdapter
+import fr.epf.min1.speedycart.ui.adapters.ProductAdapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
