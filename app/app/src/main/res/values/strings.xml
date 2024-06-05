@@ -20,7 +20,7 @@
     <string name="delete_button_userinfo_screen_text">Supprimer le compte</string>
     <string name="loading">Loading...</string>
     <string name="error">Error</string>
-    <string name="login">login</string>
+    <string name="search_button">Recherche</string>
     <string name="shop_main_textview_text">Magasins disponibles</string>
     <string name="product_main_textview_text">Produits disponibles</string>
     <string name="button_shop_signup_screen_text">S\'enregistrer en tant que vendeur/magasin</string>
@@ -55,4 +55,7 @@
     <string name="city_textview_deliveryperson_signup_screen_text">Commune</string>
     <string name="create_button_deliveryperson_signup_screen_text">Créer le compte</string>
     <string name="vehicle_textview_deliveryperson_signup_screen_text">Véhicule</string>
+    <string name="home_button_description">home button</string>
+    <string name="cart_button_description">cart button</string>
+    <string name="profil_button_decription">profil button</string>
 </resources>
