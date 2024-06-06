@@ -63,4 +63,5 @@
     <string name="shop_display_title_text">Intermarché</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="textview_fragment_product_empty_text">Une erreur est survenue lors du chargement</string>
 </resources>
