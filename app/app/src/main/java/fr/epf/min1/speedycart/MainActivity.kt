@@ -47,10 +47,10 @@ class MainActivity : AppCompatActivity() {
 
         // fetch product
         fetchProductInfo()
-        val shopList = Shop.generateListShop()
+        /*val shopList = Shop.generateListShop()
         Log.d("main", shopList.toString())
         val adapter = ShopAdapter(shopList)
-        shopRecyclerView.adapter = adapter
+        shopRecyclerView.adapter = adapter*/
 
         /*productRecyclerView = findViewById<RecyclerView>(R.id.main_products_recyclerview)
         productRecyclerView.layoutManager =
@@ -68,10 +68,7 @@ class MainActivity : AppCompatActivity() {
             }
         }*/
 
-        val fragment = ProductListFragment()
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.main_product_fragmentcontainerview, fragment)
-        transaction.commit()
+
 
         loginButton.click {
             val intent = Intent(this, LoginActivity::class.java)
@@ -116,28 +113,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fetchProductInfo() {
-        productRecyclerView = findViewById<RecyclerView>(R.id.main_products_recyclerview)
-        productRecyclerView.layoutManager =
-            GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false)
-
-        val clientService = Retrofit
-            .getInstance()
-            .create(SpeedyCartApiService::class.java)
-
-        runBlocking {
-            try {
-                val response = clientService.getProducts()
-                if (response.isSuccessful && response.body() != null) {
-                    val productList = response.body()!!
-                    Log.d(TAG, "$productList")
-                    val productAdapter = ProductAdapter(productList)
-                    productRecyclerView.adapter = productAdapter
-                } else {
-                    Log.d(TAG, "call for product list is empty or unsuccessful")
-                }
-            } catch (e: Exception) {
-                Log.d(TAG, e.toString())
-            }
-        }
+        val fragment = ProductListFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(R.id.main_product_fragmentcontainerview, fragment)
+        transaction.setReorderingAllowed(true)
+        transaction.commit()
     }
 }

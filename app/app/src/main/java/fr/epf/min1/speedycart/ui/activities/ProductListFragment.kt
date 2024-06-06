@@ -10,13 +10,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.Product
+import fr.epf.min1.speedycart.network.Retrofit
+import fr.epf.min1.speedycart.network.SpeedyCartApiService
 import fr.epf.min1.speedycart.ui.adapters.ProductAdapter
+import kotlinx.coroutines.runBlocking
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-var productRecyclerView: RecyclerView? = null
+private const val FRAG_TAG = "ProductListFragment"
 
 /**
  * A simple [Fragment] subclass.
@@ -34,15 +37,6 @@ class ProductListFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
-        productRecyclerView = this.view?.findViewById<RecyclerView>(R.id.fragment_product_recyclerview)
-        productRecyclerView?.layoutManager =
-            GridLayoutManager(this.context, 2, GridLayoutManager.VERTICAL, false)
-
-        val productList = Product.generateListProduct()
-        Log.d("onCreateViewTag", productList.toString())
-        val prodadapter = ProductAdapter(productList)
-        productRecyclerView?.adapter = prodadapter
     }
 
     override fun onCreateView(
@@ -50,7 +44,37 @@ class ProductListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product_list, container, false)
+        var mutableView: View? = null
+
+        val clientService = Retrofit
+            .getInstance()
+            .create(SpeedyCartApiService::class.java)
+
+        runBlocking {
+            try {
+                val response = clientService.getProducts()
+                if (response.isSuccessful && response.body() != null) {
+                    mutableView = inflater.inflate(R.layout.fragment_product_list, container, false)
+
+                    val productRecyclerView = mutableView?.findViewById<RecyclerView>(R.id.fragment_product_recyclerview)
+                    productRecyclerView?.layoutManager =
+                        GridLayoutManager(this@ProductListFragment.context, 2, GridLayoutManager.VERTICAL, false)
+
+                    val productList = response.body()!!
+                    Log.d(FRAG_TAG, "$productList")
+                    val productAdapter = ProductAdapter(productList)
+                    productRecyclerView?.adapter = productAdapter
+                } else {
+                    mutableView = inflater.inflate(R.layout.fragment_product_empty, container, false)
+                    Log.d(FRAG_TAG, "call for product list is empty or unsuccessful")
+                }
+            } catch (e: Exception) {
+                mutableView = inflater.inflate(R.layout.fragment_product_empty, container, false)
+                Log.d(FRAG_TAG, e.toString())
+            }
+        }
+
+        return mutableView
     }
 
     companion object {
