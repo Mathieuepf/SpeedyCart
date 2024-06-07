@@ -19,7 +19,7 @@
             android:name=".ui.activities.ShopAccountActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.DeliveryPersonneAccountActivity"
+            android:name=".ui.activities.DeliveryPersonAccountActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.AdminAccountActivity"
