@@ -13,6 +13,7 @@ constraintlayout = "2.1.4"
 moshi = "1.15.1"
 retrofit = "2.11.0"
 room-runtime = "2.6.1"
+ui-desktop = "1.6.7"
 
 [libraries]
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-runtime" }
@@ -32,11 +33,8 @@ moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
-<<<<<<< HEAD
-retrofit2-converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "converter-scalars" }
 androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
-=======
->>>>>>> fc65d96 (feat(app-localStorage): ajout de Room, base de donnée local)
+androidx-ui-desktop = { group = "androidx.compose.ui", name = "ui-desktop", version.ref = "ui-desktop" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

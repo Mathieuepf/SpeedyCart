@@ -1,22 +1,19 @@
 package fr.epf.min1.speedycart
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import fr.epf.min1.speedycart.data.Product
 import fr.epf.min1.speedycart.data.Shop
 import fr.epf.min1.speedycart.network.Retrofit
 import fr.epf.min1.speedycart.network.SpeedyCartApiService
-import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
-import fr.epf.min1.speedycart.ui.activities.LoginActivity
-import fr.epf.min1.speedycart.ui.activities.SignupActivity
 import fr.epf.min1.speedycart.ui.fragments.EmptyProductMessageFragment
 import fr.epf.min1.speedycart.ui.fragments.EmptyShopMessageFragment
 import fr.epf.min1.speedycart.ui.fragments.ProductListFragment
 import fr.epf.min1.speedycart.ui.fragments.ShopListFragment
+import fr.epf.min1.speedycart.data.click
+import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
 import kotlinx.coroutines.runBlocking
 
 private const val TAG = "MainActivity"
@@ -27,31 +24,26 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val loginButton = findViewById<Button>(R.id.main_search_button)
-        val userDetailsButton = findViewById<ImageButton>(R.id.main_user_details_imagebutton)
-        val shopCartButton = findViewById<ImageButton>(R.id.main_shop_cart_imagebutton)
+        loginButton.click {
+            TODO("call api to find a shop")
+        }
 
         // Initialise shop and product info
         initProductInfo()
         initShopInfo()
 
-        loginButton.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-        }
-
-        userDetailsButton.setOnClickListener {
-            val intent = Intent(this, ClientAccountActivity::class.java)
-            startActivity(intent)
-        }
-
-        shopCartButton.setOnClickListener {
-            val intent = Intent(this, SignupActivity::class.java)
-            startActivity(intent)
+        // call navBar
+        if (savedInstanceState == null) { // check navbar not already created
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main_navbar_fragment_container, NavigationBarFragment())
+                .commit()
         }
     }
 
     private fun fetchShopInfo(): List<Shop> {
         val clientService = Retrofit.getInstance().create(SpeedyCartApiService::class.java)
+        // fetch products
+        fetchProductInfo()
 
         return runBlocking {
             try {
