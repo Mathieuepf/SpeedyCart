@@ -32,7 +32,7 @@ class ClientAccountActivity : AppCompatActivity() {
 
         lifecycleScope.launch {
 
-            // find user in local data base
+            // find user in local database
             val userDTO = findUserInLDB(repository)
 
             // find user in remote database
