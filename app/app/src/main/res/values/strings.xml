@@ -65,4 +65,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="textview_fragment_product_empty_text">Une erreur est survenue lors du chargement</string>
     <string name="empty_shop_fragment_text">une erreur est survenue lors du chargement</string>
+    <string name="logout_button_description">logout button</string>
+    <string name="client_account_title">Compte Client</string>
 </resources>
