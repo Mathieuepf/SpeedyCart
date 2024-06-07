@@ -6,8 +6,6 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.data.Product
 import fr.epf.min1.speedycart.data.Shop
 import fr.epf.min1.speedycart.network.Retrofit
@@ -15,16 +13,15 @@ import fr.epf.min1.speedycart.network.SpeedyCartApiService
 import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
 import fr.epf.min1.speedycart.ui.activities.LoginActivity
 import fr.epf.min1.speedycart.ui.activities.SignupActivity
-import fr.epf.min1.speedycart.ui.adapters.ShopAdapter
 import fr.epf.min1.speedycart.ui.fragments.EmptyProductMessageFragment
+import fr.epf.min1.speedycart.ui.fragments.EmptyShopMessageFragment
 import fr.epf.min1.speedycart.ui.fragments.ProductListFragment
+import fr.epf.min1.speedycart.ui.fragments.ShopListFragment
 import kotlinx.coroutines.runBlocking
 
 private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var shopRecyclerView: RecyclerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -32,11 +29,6 @@ class MainActivity : AppCompatActivity() {
         val loginButton = findViewById<Button>(R.id.main_search_button)
         val userDetailsButton = findViewById<ImageButton>(R.id.main_user_details_imagebutton)
         val shopCartButton = findViewById<ImageButton>(R.id.main_shop_cart_imagebutton)
-
-        // Initialize RecyclerViews
-        shopRecyclerView = findViewById(R.id.main_shop_recyclerview)
-        shopRecyclerView.layoutManager =
-            LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
         // Initialise shop and product info
         initProductInfo()
@@ -103,8 +95,17 @@ class MainActivity : AppCompatActivity() {
     private fun initShopInfo() {
         val shopList = fetchShopInfo()
 
-        val shopAdapter = ShopAdapter(shopList)
-        shopRecyclerView.adapter = shopAdapter
+        if (shopList.isEmpty()) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main_shop_fragment_container, EmptyShopMessageFragment())
+                .commit()
+        } else {
+            val fragment = ShopListFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main_shop_fragment_container, fragment)
+                .commit()
+            fragment.setShopList(shopList)
+        }
     }
 
     private fun initProductInfo() {

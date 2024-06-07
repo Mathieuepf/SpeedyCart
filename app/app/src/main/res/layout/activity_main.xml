@@ -59,16 +59,15 @@
         app:layout_constraintTop_toBottomOf="@+id/top_bar_layout"
         app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/main_shop_recyclerview"
+    <FrameLayout
+        android:id="@+id/main_shop_fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/main_products_textview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_shop_textview"
-        tools:listitem="@layout/shop_main_view" />
+        app:layout_constraintTop_toBottomOf="@+id/main_shop_textview" />
 
     <!-- Product Content -->
     <TextView
@@ -93,8 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_products_textview"
-        app:layout_constraintVertical_bias="0.5"
-        tools:listitem="@layout/product_main_view" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <!-- Footer -->
     <androidx.constraintlayout.widget.ConstraintLayout
