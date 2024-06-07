@@ -52,7 +52,7 @@
         android:text="@string/shop_main_textview_text"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_bar_layout"
+        app:layout_constraintBottom_toTopOf="@+id/main_navbar_fragment_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,7 @@
         android:id="@+id/main_product_fragment_container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_bar_layout"
+        app:layout_constraintBottom_toTopOf="@+id/main_navbar_fragment_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_products_textview"
@@ -96,72 +96,15 @@
 
     <!-- Footer -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bottom_bar_layout"
+        android:id="@+id/main_navbar_fragment_container"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:background="@color/cyan_background"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/top_bar_layout"
-        app:layout_constraintVertical_bias="1.0">
-
-        <ImageButton
-            android:id="@+id/main_user_details_imagebutton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/round_button"
-            android:clickable="true"
-            android:contentDescription="@string/profil_button_decription"
-            android:elevation="4dp"
-            android:scaleType="centerInside"
-            android:tint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/person_fill0_24"
-            tools:ignore="UseAppTint" />
-
-        <ImageButton
-            android:id="@+id/main_home_imagebutton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/round_button"
-            android:clickable="true"
-            android:contentDescription="@string/home_button_description"
-            android:elevation="4dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/home_fill0_24"
-            android:tint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.231"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UseAppTint" />
-
-        <ImageButton
-            android:id="@+id/main_shop_cart_imagebutton"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:background="@drawable/round_button"
-            android:clickable="true"
-            android:contentDescription="@string/cart_button_description"
-            android:elevation="4dp"
-            android:scaleType="centerInside"
-            android:src="@drawable/shopping_fill0_z24"
-            android:tint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.765"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="UseAppTint" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
