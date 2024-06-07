@@ -15,7 +15,7 @@ import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.localstorage.AppRepository
 import fr.epf.min1.speedycart.ui.activities.AdminAccountActivity
 import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
-import fr.epf.min1.speedycart.ui.activities.DeliveryPersonneAccountActivity
+import fr.epf.min1.speedycart.ui.activities.DeliveryPersonAccountActivity
 import fr.epf.min1.speedycart.ui.activities.LoginActivity
 import fr.epf.min1.speedycart.ui.activities.ShopAccountActivity
 import kotlinx.coroutines.Dispatchers
@@ -65,7 +65,7 @@ class NavigationBarFragment : Fragment() {
                         TypeUser.CLIENT -> Intent(view.context, ClientAccountActivity::class.java)
                         TypeUser.SHOP -> Intent(view.context, ShopAccountActivity::class.java)
                         TypeUser.ADMIN -> Intent(view.context, AdminAccountActivity::class.java)
-                        else -> Intent(view.context, DeliveryPersonneAccountActivity::class.java)
+                        else -> Intent(view.context, DeliveryPersonAccountActivity::class.java)
                     }
                 }
                 startActivity(intent)
