@@ -9,6 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import fr.epf.min1.speedycart.MainActivity
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.LoginDTO
 import fr.epf.min1.speedycart.data.TypeUser
@@ -44,7 +45,13 @@ class LoginActivity : AppCompatActivity() {
                 val user = searchIfUserReel(loginDto)
 
                 // save user info in local data base
-                if (user != null) putUserInfoInDB(user)
+                if (user != null) {
+                    putUserInfoInDB(user)
+
+                    // go back to main page
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }
 
