@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.ProductDisplayActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.ShopAccountActivity"
             android:exported="false" />
         <activity
@@ -27,7 +30,7 @@
         <activity
             android:name=".ui.activities.ShopDisplayActivity"
             android:exported="false" />
-        <activity 
+        <activity
             android:name=".ui.activities.ShopCartActivity"
             android:exported="false" />
         <activity
