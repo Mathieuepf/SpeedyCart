@@ -3,12 +3,21 @@ package fr.epf.min1.speedycart.ui.activities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.Product
+import fr.epf.min1.speedycart.data.ProductDTO
+import fr.epf.min1.speedycart.data.click
+import fr.epf.min1.speedycart.localstorage.AppRepository
 import fr.epf.min1.speedycart.ui.adapters.PRODUCT_EXTRA
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 private const val TAG = "ProductDisplayActivity"
 
@@ -33,9 +42,37 @@ class ProductDisplayActivity : AppCompatActivity() {
                 weightTextView.text = "${this.weight}g"
                 shopNameTextView.text = this.shop.name
                 descriptionTextView.text = this.description
+
+                addButton.setOnClickListener{
+                    val productDTO = this.id?.let { it1 ->
+                        ProductDTO(
+                            it1,
+                            this.name,
+                            this.unitPrice,
+                            this.weight,
+                            this.sizes,
+                            this.shop.name
+                        )
+                    }
+                    Log.d(TAG, "productDTO créé")
+
+                    val repository = AppRepository(application)
+                    lifecycleScope.launch {
+                        withContext(Dispatchers.IO){
+                            repository.addToCart(productDTO!!)
+                            //shortToast()
+                            Log.d(TAG, "add effectué")
+                        }
+                    }
+                }
             }
         }
+    }
 
-
+    private fun shortToast(){
+        Toast.makeText(
+            this@ProductDisplayActivity,
+            "Produit ajouté", Toast.LENGTH_SHORT
+        ).show()
     }
 }

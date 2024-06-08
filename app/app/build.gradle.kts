@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinAndroid)
     id("kotlin-parcelize")
     id("kotlin-kapt")
+    id("androidx.room")
 }
 
 android {
@@ -35,6 +36,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+    room {
+        schemaDirectory("$projectDir/schemas")
     }
 }
 
