@@ -74,4 +74,6 @@
     <string name="adresse_textview_shop_cart_screen_text">Adresse de livraison</string>
     <string name="product_list_textview_shop_cart_screen_text">Produits dans le panier</string>
     <string name="payment_button_shop_cart_screen_text">Payer</string>
+    <string name="description_title_textview_product_display_text">Description</string>
+    <string name="add_button_product_display_text">Ajouter au panier</string>
 </resources>
