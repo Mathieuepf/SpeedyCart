@@ -10,6 +10,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.Product
+import fr.epf.min1.speedycart.data.ProductDTO
 import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
 import org.w3c.dom.Text
@@ -18,7 +19,7 @@ class ProductCartViewHolder(item: View): RecyclerView.ViewHolder(item)
 
 const val PRODUCT_CART_EXTRA = "product"
 
-class ProductCartAdapter(val products: List<Product>): RecyclerView.Adapter<ProductCartViewHolder>(){
+class ProductCartAdapter(val products: List<ProductDTO>): RecyclerView.Adapter<ProductCartViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductCartViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val view = layoutInflater.inflate(R.layout.product_cart_view, parent, false)
@@ -41,7 +42,7 @@ class ProductCartAdapter(val products: List<Product>): RecyclerView.Adapter<Prod
         weightTextView.text = "${product.weight}g"
 
         val shopNameTextView = view.findViewById<TextView>(R.id.shop_name_product_cart_card_textview)
-        shopNameTextView.text = product.shop.name
+        shopNameTextView.text = product.shopName
 
         val productCartCard = view.findViewById<CardView>(R.id.product_cart_card_cardview)
         productCartCard.click {

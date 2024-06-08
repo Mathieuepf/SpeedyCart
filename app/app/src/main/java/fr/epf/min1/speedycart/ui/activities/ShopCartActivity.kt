@@ -4,12 +4,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.Client
 import fr.epf.min1.speedycart.data.Product
+import fr.epf.min1.speedycart.localstorage.AppRepository
 import fr.epf.min1.speedycart.ui.adapters.ProductCartAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+private const val TAG = "ShopCartActivity"
 
 class ShopCartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +35,13 @@ class ShopCartActivity : AppCompatActivity() {
         productRecycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
 
-        val productList = Product.generateListProduct()
-        val productAdapter = ProductCartAdapter(productList)
-        productRecycler.adapter = productAdapter
+        val repository = AppRepository(application)
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO){
+                val productList = repository.getCart()
+                val productAdapter = ProductCartAdapter(productList)
+                productRecycler.adapter = productAdapter
+            }
+        }
     }
 }

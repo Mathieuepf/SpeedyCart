@@ -18,6 +18,7 @@ import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
 import fr.epf.min1.speedycart.ui.activities.DeliveryPersonAccountActivity
 import fr.epf.min1.speedycart.ui.activities.LoginActivity
 import fr.epf.min1.speedycart.ui.activities.ShopAccountActivity
+import fr.epf.min1.speedycart.ui.activities.ShopCartActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -41,7 +42,8 @@ class NavigationBarFragment : Fragment() {
 
         val shopCartButton = view.findViewById<ImageButton>(R.id.fragment_navbar_cart_imagebutton)
         shopCartButton.click {
-            TODO("call page for cart")
+            val intent = Intent(view.context, ShopCartActivity::class.java)
+            startActivity(intent)
         }
 
         return view
