@@ -14,10 +14,6 @@ import fr.epf.min1.speedycart.ui.fragments.ProductListFragment
 import fr.epf.min1.speedycart.ui.fragments.ShopListFragment
 import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
-import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
-import fr.epf.min1.speedycart.ui.activities.LoginActivity
-import fr.epf.min1.speedycart.ui.activities.ShopCartActivity
-import fr.epf.min1.speedycart.ui.activities.SignupActivity
 import kotlinx.coroutines.runBlocking
 
 private const val TAG = "MainActivity"
