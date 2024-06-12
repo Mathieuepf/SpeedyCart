@@ -19,6 +19,8 @@ import fr.epf.min1.speedycart.ui.adapters.ProductCartAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import sqip.CardEntry
+import sqip.CardEntry.DEFAULT_CARD_ENTRY_REQUEST_CODE
 
 private const val TAG = "ShopCartActivity"
 
@@ -51,6 +53,10 @@ class ShopCartActivity : AppCompatActivity() {
                 val productAdapter = ProductCartAdapter(productList)
                 productRecycler.adapter = productAdapter
             }
+        }
+
+        paymentButton.setOnClickListener {
+            CardEntry.startCardEntryActivity(this, true, DEFAULT_CARD_ENTRY_REQUEST_CODE)
         }
     }
 }
