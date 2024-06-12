@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.ui.desktop)
+    implementation(libs.androidx.activity)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -70,4 +71,5 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
+    implementation("com.squareup.sdk.in-app-payments:card-entry:1.6.5")
 }
