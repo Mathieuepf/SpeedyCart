@@ -1,8 +1,10 @@
 package fr.epf.min1.speedycart.ui.activities
 
+import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -19,8 +21,10 @@ import fr.epf.min1.speedycart.ui.adapters.ProductCartAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import sqip.Callback
 import sqip.CardEntry
 import sqip.CardEntry.DEFAULT_CARD_ENTRY_REQUEST_CODE
+import sqip.CardEntryActivityResult
 
 private const val TAG = "ShopCartActivity"
 
@@ -58,5 +62,23 @@ class ShopCartActivity : AppCompatActivity() {
         paymentButton.setOnClickListener {
             CardEntry.startCardEntryActivity(this, true, DEFAULT_CARD_ENTRY_REQUEST_CODE)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        CardEntry.handleActivityResult(data, object : Callback<CardEntryActivityResult> {
+            override fun onResult(result: CardEntryActivityResult) {
+                when {
+                    result.isSuccess() -> {
+                        val cardResult = result.getSuccessValue()
+                        val card = cardResult.card
+                        val nonce = cardResult.nonce
+                        Log.d("ShopCartActivity", "paiement accepté")
+                    }
+                    result.isCanceled() -> {
+                        Log.d("ShopCartActivity", "paiement annulé")
+                    }
+                }
+            }
+        })
     }
 }
