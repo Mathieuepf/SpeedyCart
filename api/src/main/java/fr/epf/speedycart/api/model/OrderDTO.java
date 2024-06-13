@@ -11,5 +11,5 @@ public class OrderDTO {
     private Order order;
 
     @NotNull(message = "Order products can not be null")
-    private List<Product> products;
+    private List<ProductDTO> products;
 }

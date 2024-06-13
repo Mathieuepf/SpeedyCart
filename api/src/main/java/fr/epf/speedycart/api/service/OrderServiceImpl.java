@@ -1,15 +1,16 @@
 package fr.epf.speedycart.api.service;
 
 import fr.epf.speedycart.api.exception.OrderNotFoundException;
-import fr.epf.speedycart.api.model.Order;
-import fr.epf.speedycart.api.model.OrderDTO;
-import fr.epf.speedycart.api.model.Product;
-import fr.epf.speedycart.api.model.ProductOrder;
+import fr.epf.speedycart.api.exception.UserNotFoundException;
+import fr.epf.speedycart.api.model.*;
+import fr.epf.speedycart.api.repository.ClientDao;
+import fr.epf.speedycart.api.repository.DeliveryDao;
 import fr.epf.speedycart.api.repository.OrderDao;
 import fr.epf.speedycart.api.repository.ProductOrderDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,10 +22,67 @@ public class OrderServiceImpl implements OrderService {
     ProductOrderService productOrderService;
 
     @Autowired
+    ProductService productService;
+
+    @Autowired
     OrderDao orderDao;
 
     @Autowired
     ProductOrderDao productOrderDao;
+
+    @Autowired
+    DeliveryDao deliveryDao;
+
+    @Autowired
+    ClientDao clientDao;
+
+    @Override
+    public Order saveOrderData(OrderDTO orderDTO) {
+        // check client exist
+        Long clientId = orderDTO.getOrder().getClient().getId();
+        clientDao.findById(clientId).orElseThrow(
+                () -> new UserNotFoundException("Client Invalid Id"));
+
+        Order order = orderDTO.getOrder();
+        order.setId(0L);
+        order.setOrderAt(LocalDateTime.now());
+
+        // create new delivery
+        Delivery delivery = new Delivery();
+        delivery.setFee(calculateFee(orderDTO));
+        order.setDelivery(deliveryDao.save(delivery));
+
+        Order newOrder = orderDao.save(order);
+
+        // link Products to Order
+        for (ProductDTO productDTO : orderDTO.getProducts()) {
+            saveNewProductOrder(productDTO, newOrder);
+        }
+
+        return newOrder;
+    }
+
+    private static double calculateFee(OrderDTO orderDTO) {
+        double fee = 0.0;
+        for (ProductDTO productDTO : orderDTO.getProducts()) {
+            double unitPrice = productDTO.getProduct().getUnitPrice();
+            int quantity = productDTO.getQuantity();
+            fee += unitPrice * quantity;
+        }
+        return fee;
+    }
+
+    private void saveNewProductOrder(ProductDTO productDTO, Order order) {
+        ProductOrder productOrder = new ProductOrder();
+        productOrder.setOrder(order);
+
+        Product product = productService.getProductData(productDTO.getProduct().getId());
+        productOrder.setProduct(product);
+
+        productOrder.setQuantity(productDTO.getQuantity());
+        System.out.println(productOrder);
+        productOrderDao.save(productOrder);
+    }
 
     @Override
     public List<OrderDTO> getOrdersData() {
@@ -35,19 +93,43 @@ public class OrderServiceImpl implements OrderService {
 
         List<OrderDTO> orderDTOS = new ArrayList<>();
         for (Order order : orders) {
-            List<ProductOrder> productOrders = productOrderDao.findByOrder(order);
-            if (!productOrders.isEmpty()) {
-
-                List<Product> products = productOrders.stream()
-                        .map(ProductOrder::getProduct)
-                        .collect(Collectors.toList());
-
-                OrderDTO newOrder = new OrderDTO();
-                newOrder.setOrder(order);
-                newOrder.setProducts(products);
+            OrderDTO newOrder = findProductsLinkToOrder(order);
+            if (newOrder != null) {
                 orderDTOS.add(newOrder);
             }
         }
         return orderDTOS;
+    }
+
+    private OrderDTO findProductsLinkToOrder(Order order) {
+        OrderDTO newOrder = new OrderDTO();
+        List<ProductOrder> productOrders = productOrderDao.findByOrder(order);
+        if (!productOrders.isEmpty()) {
+            List<ProductDTO> products = productOrders.stream()
+                    .map(productOrder -> {
+                        ProductDTO productDTO = new ProductDTO();
+                        productDTO.setProduct(productOrder.getProduct());
+                        productDTO.setQuantity(productOrder.getQuantity());
+                        return productDTO;
+                    })
+                    .collect(Collectors.toList());
+
+            newOrder.setOrder(order);
+            newOrder.setProducts(products);
+            return newOrder;
+        }
+        return null;
+    }
+
+    @Override
+    public OrderDTO getOrderData(long id) {
+        Order order = orderDao.findById(id)
+                .orElseThrow(() -> new OrderNotFoundException("Invalid Id"));
+
+        OrderDTO newOrder = findProductsLinkToOrder(order);
+        if (newOrder == null) {
+            throw new OrderNotFoundException("Invalid Id");
+        }
+        return newOrder;
     }
 }
