@@ -34,8 +34,18 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(OrderNotFoundException.class)
-    public ResponseEntity<String> handleUserNotFoundException(OrderNotFoundException e) {
+    public ResponseEntity<String> handleOrderNotFoundException(OrderNotFoundException e) {
         return new ResponseEntity<>("Order not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DeliveryNotFoundException.class)
+    public ResponseEntity<String> handleDeliveryNotFoundException(DeliveryNotFoundException e) {
+        return new ResponseEntity<>("Delivery not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(DeliveryException.class)
+    public ResponseEntity<String> handleDeliveryException(DeliveryException e) {
+        return new ResponseEntity<>("Invalid Delivery: " + e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)

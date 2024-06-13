@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface DeliveryDao extends JpaRepository<Delivery, Long> {
-    List<Delivery> findDeliveriesByDisableFalseAndGotFalse();
+    List<Delivery> findDeliveriesByDisableFalseAndDeliveryPersonIsNull();
 }

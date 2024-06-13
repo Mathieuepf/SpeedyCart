@@ -39,6 +39,6 @@ public class OrderController {
                 .path("/{id}")
                 .buildAndExpand(orderAdded.getId())
                 .toUri();
-        return ResponseEntity.created(location).build();
+        return ResponseEntity.created(location).body(orderAdded);
     }
 }
