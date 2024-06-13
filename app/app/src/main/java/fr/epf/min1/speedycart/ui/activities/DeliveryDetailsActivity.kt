@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import fr.epf.min1.speedycart.R
+import fr.epf.min1.speedycart.data.Product
+import fr.epf.min1.speedycart.ui.fragments.EmptyProductMessageFragment
+import fr.epf.min1.speedycart.ui.fragments.ProductListFragment
 
 class DeliveryDetailsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +21,22 @@ class DeliveryDetailsActivity : AppCompatActivity() {
             insets
         }
 
+        initProducts()
+    }
 
+    private fun initProducts(){
+        val productList = Product.generateListProduct(5)
+
+        if(productList.isEmpty()){
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.delivery_details_screen_fragment_container, EmptyProductMessageFragment())
+                .commit()
+        }else{
+            val fragment = ProductListFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.delivery_details_screen_fragment_container, fragment)
+                .commit()
+            fragment.setProductList(productList)
+        }
     }
 }
