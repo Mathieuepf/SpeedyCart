@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.DeliveryListActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.ProductDisplayActivity"
             android:exported="false" />
         <activity
@@ -63,9 +66,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <meta-data
             android:name="sqip.SQUARE_APPLICATION_ID"
-            android:value="sandbox-sq0idb-mhZD0y6FXJVkfUyrsQ1W7g"/>
+            android:value="sandbox-sq0idb-mhZD0y6FXJVkfUyrsQ1W7g" />
     </application>
 
 </manifest>

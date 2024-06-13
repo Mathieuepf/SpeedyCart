@@ -76,4 +76,6 @@
     <string name="payment_button_shop_cart_screen_text">Payer</string>
     <string name="description_title_textview_product_display_text">Description</string>
     <string name="add_button_product_display_text">Ajouter au panier</string>
+    <string name="textview_delivery_list_screen_text">Livraisons en attentes</string>
+    <string name="empty_delivery_list_textview_text">Une erreur de chargement est survenue</string>
 </resources>

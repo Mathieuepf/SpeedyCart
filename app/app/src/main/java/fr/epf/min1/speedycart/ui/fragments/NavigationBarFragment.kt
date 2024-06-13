@@ -15,6 +15,7 @@ import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.localstorage.AppRepository
 import fr.epf.min1.speedycart.ui.activities.AdminAccountActivity
 import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
+import fr.epf.min1.speedycart.ui.activities.DeliveryListActivity
 import fr.epf.min1.speedycart.ui.activities.DeliveryPersonAccountActivity
 import fr.epf.min1.speedycart.ui.activities.LoginActivity
 import fr.epf.min1.speedycart.ui.activities.ShopAccountActivity
@@ -42,7 +43,8 @@ class NavigationBarFragment : Fragment() {
 
         val shopCartButton = view.findViewById<ImageButton>(R.id.fragment_navbar_cart_imagebutton)
         shopCartButton.click {
-            val intent = Intent(view.context, ShopCartActivity::class.java)
+            //val intent = Intent(view.context, ShopCartActivity::class.java)
+            val intent = Intent(view.context, DeliveryListActivity::class.java)
             startActivity(intent)
         }
 
