@@ -37,10 +37,10 @@ class ProductAdapter(val products: List<Product>): RecyclerView.Adapter<ProductV
         nameTextView.text = product.name
 
         val priceTextView = view.findViewById<TextView>(R.id.price_product_card_textview)
-        priceTextView.text = product.unitPrice.toString()+" €"
+        priceTextView.text = String.format("%.2f", product.unitPrice)+" €"
 
         val weightTextView = view.findViewById<TextView>(R.id.weight_product_card_textview)
-        weightTextView.text = product.weight.toString()+"g"
+        weightTextView.text = String.format("%.2f", product.weight)+"Kg"
 
         val shopNameTextView = view.findViewById<TextView>(R.id.shop_name_product_card_textview)
         shopNameTextView.text = product.shop.name

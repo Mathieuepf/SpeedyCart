@@ -47,10 +47,10 @@ class ProductCartAdapter(val products: List<ProductDTO>): RecyclerView.Adapter<P
         nameTextView.text = product.name
 
         val priceTextView = view.findViewById<TextView>(R.id.price_product_cart_card_textview)
-        priceTextView.text = "${product.unitPrice}€"
+        priceTextView.text = "${String.format("%.2f", product.unitPrice)}€"
 
         val weightTextView = view.findViewById<TextView>(R.id.weight_product_cart_card_textview)
-        weightTextView.text = "${product.weight}g"
+        weightTextView.text = "${String.format("%.2f", product.weight)}g"
 
         val shopNameTextView = view.findViewById<TextView>(R.id.shop_name_product_cart_card_textview)
         shopNameTextView.text = product.shopName
