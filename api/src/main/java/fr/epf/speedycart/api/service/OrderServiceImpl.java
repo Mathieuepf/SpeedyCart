@@ -63,10 +63,11 @@ public class OrderServiceImpl implements OrderService {
         return newOrder;
     }
 
-    private static double calculateFee(OrderDTO orderDTO) {
+    private double calculateFee(OrderDTO orderDTO) {
         double fee = 0.0;
         for (ProductDTO productDTO : orderDTO.getProducts()) {
-            double unitPrice = productDTO.getProduct().getUnitPrice();
+            Product product = productService.getProductData(productDTO.getProduct().getId());
+            double unitPrice = product.getUnitPrice();
             int quantity = productDTO.getQuantity();
             fee += unitPrice * quantity;
         }
@@ -145,7 +146,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private List<Order> getOrdersWaiting() {
-        List<Delivery> deliveries = deliveryDao.findDeliveriesByDisableFalseAndGotFalse();
+        List<Delivery> deliveries = deliveryDao.findDeliveriesByDisableFalseAndDeliveryPersonIsNull();
 
         List<Order> orders = new ArrayList<>();
         for (Delivery delivery : deliveries) {
