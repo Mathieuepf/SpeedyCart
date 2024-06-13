@@ -33,6 +33,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>("Invalid User: " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(OrderNotFoundException e) {
+        return new ResponseEntity<>("Order not found: " + e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> exceptionHandler(Exception e) {
         return new ResponseEntity<>("Invalid statement: " + e.getMessage(), HttpStatus.BAD_REQUEST);
