@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -87,18 +88,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrderDTO> getOrdersData() {
         List<Order> orders = orderDao.findAll();
-        if (orders.isEmpty()) {
-            throw new OrderNotFoundException("No records");
-        }
-
-        List<OrderDTO> orderDTOS = new ArrayList<>();
-        for (Order order : orders) {
-            OrderDTO newOrder = findProductsLinkToOrder(order);
-            if (newOrder != null) {
-                orderDTOS.add(newOrder);
-            }
-        }
-        return orderDTOS;
+        return ordersToOrderDTOs(orders);
     }
 
     private OrderDTO findProductsLinkToOrder(Order order) {
@@ -131,5 +121,37 @@ public class OrderServiceImpl implements OrderService {
             throw new OrderNotFoundException("Invalid Id");
         }
         return newOrder;
+    }
+
+    @Override
+    public List<OrderDTO> getOrdersWaitingData() {
+        List<Order> orders = getOrdersWaiting();
+        return ordersToOrderDTOs(orders);
+    }
+
+    private List<OrderDTO> ordersToOrderDTOs(List<Order> orders) {
+        if (orders.isEmpty()) {
+            throw new OrderNotFoundException("No records");
+        }
+
+        List<OrderDTO> orderDTOS = new ArrayList<>();
+        for (Order order : orders) {
+            OrderDTO newOrder = findProductsLinkToOrder(order);
+            if (newOrder != null) {
+                orderDTOS.add(newOrder);
+            }
+        }
+        return orderDTOS;
+    }
+
+    private List<Order> getOrdersWaiting() {
+        List<Delivery> deliveries = deliveryDao.findDeliveriesByDisableFalseAndGotFalse();
+
+        List<Order> orders = new ArrayList<>();
+        for (Delivery delivery : deliveries) {
+            Optional<Order> optionalOrder = orderDao.findByDelivery(delivery);
+            optionalOrder.ifPresent(orders::add);
+        }
+        return orders;
     }
 }
