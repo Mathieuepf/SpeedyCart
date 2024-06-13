@@ -78,4 +78,7 @@
     <string name="add_button_product_display_text">Ajouter au panier</string>
     <string name="textview_delivery_list_screen_text">Livraisons en attentes</string>
     <string name="empty_delivery_list_textview_text">Une erreur de chargement est survenue</string>
+    <string name="title_textview_delivery_details_screen_text">Informations sur la livraison</string>
+    <string name="title_list_textview_delivery_details_screen_text">Produits dans la livraison</string>
+    <string name="button_delivery_details_screen_text">Accepter la livraison</string>
 </resources>
