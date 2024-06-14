@@ -16,4 +16,7 @@ interface ProductDao {
 
     @Delete
     fun deleteProduct(productDTO: ProductDTO)
+
+    @Query("DELETE FROM product")
+    fun wipeCart()
 }
