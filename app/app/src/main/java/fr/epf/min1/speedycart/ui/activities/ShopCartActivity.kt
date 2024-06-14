@@ -18,6 +18,7 @@ import fr.epf.min1.speedycart.data.ProductDTO
 import fr.epf.min1.speedycart.localstorage.AppRepository
 import fr.epf.min1.speedycart.ui.adapters.DELETE_CART_EXTRA
 import fr.epf.min1.speedycart.ui.adapters.ProductCartAdapter
+import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -61,6 +62,12 @@ class ShopCartActivity : AppCompatActivity() {
 
         paymentButton.setOnClickListener {
             CardEntry.startCardEntryActivity(this, true, DEFAULT_CARD_ENTRY_REQUEST_CODE)
+        }
+
+        if (savedInstanceState == null) { // check navbar not already created
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.cart_navbar_fragment_container, NavigationBarFragment())
+                .commit()
         }
     }
 
