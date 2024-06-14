@@ -40,14 +40,9 @@ class NavigationBarFragment : Fragment() {
 
         // show user login or account on button click
         loginAccountUserButton(view)
-        shopCartButton(view)
 
-//        val shopCartButton = view.findViewById<ImageButton>(R.id.fragment_navbar_cart_imagebutton)
-//        shopCartButton.click {
-//            //val intent = Intent(view.context, ShopCartActivity::class.java)
-//            val intent = Intent(view.context, DeliveryListActivity::class.java)
-//            startActivity(intent)
-//        }
+        // show cart
+        shopCartButton(view)
 
         return view
     }
@@ -78,7 +73,7 @@ class NavigationBarFragment : Fragment() {
         }
     }
 
-    private fun shopCartButton(view: View){
+    private fun shopCartButton(view: View) {
         val cartButton =
             view.findViewById<ImageButton>(R.id.fragment_navbar_cart_imagebutton)
         val repository = AppRepository(requireActivity().application)
@@ -88,7 +83,7 @@ class NavigationBarFragment : Fragment() {
                 val users = withContext(Dispatchers.IO) {
                     repository.getUser()
                 }
-                val intent = if(users.isEmpty()){
+                val intent = if (users.isEmpty()) {
                     Intent(view.context, LoginActivity::class.java)
                 } else {
                     when (users[0].typeUser) {

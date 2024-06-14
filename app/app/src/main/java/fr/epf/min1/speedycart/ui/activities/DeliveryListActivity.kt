@@ -16,16 +16,21 @@ import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
 class DeliveryListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
+
         setContentView(R.layout.activity_delivery_list)
+
+        /*
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-        }
+        }*/
 
+        //
         initDeliveries()
 
+        // put navbar
         if (savedInstanceState == null) { // check navbar not already created
             supportFragmentManager.beginTransaction()
                 .replace(R.id.delivery_list_navbar_fragment_container, NavigationBarFragment())
@@ -33,21 +38,21 @@ class DeliveryListActivity : AppCompatActivity() {
         }
     }
 
-    private fun fetchDeliveries(): List<Delivery>{
+    private fun fetchDeliveries(): List<Delivery> {
         val clientService = Retrofit.getInstance().create(SpeedyCartApiService::class.java)
         val deliveries = Delivery.generateDeliveries()
 
         return deliveries.filter { d -> d.prepared }
     }
 
-    private fun initDeliveries(){
+    private fun initDeliveries() {
         val deliveryList = fetchDeliveries()
 
-        if(deliveryList.isEmpty()){
+        if (deliveryList.isEmpty()) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.delivery_list_screen_fragment_container, EmptyDeliveryFragment())
                 .commit()
-        }else{
+        } else {
             val fragment = DeliveryListFragment()
             supportFragmentManager.beginTransaction()
                 .replace(R.id.delivery_list_screen_fragment_container, fragment)

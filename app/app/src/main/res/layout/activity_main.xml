@@ -9,7 +9,7 @@
     <!-- Header -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_bar_layout"
-        android:layout_width="411dp"
+        android:layout_width="0dp"
         android:layout_height="69dp"
         android:background="@color/cyan_background"
         app:layout_constraintBottom_toBottomOf="parent"

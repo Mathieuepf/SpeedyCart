@@ -30,10 +30,10 @@ class DeliveryAdapter(val deliveries: List<Delivery>): RecyclerView.Adapter<Deli
         val delivery = deliveries[position]
         val view = holder.itemView
 
-        val addressTextView = view.findViewById<TextView>(R.id.delivery_card_address_textview)
+        val addressTextView = view.findViewById<TextView>(R.id.delivery_shop_address_textview)
         addressTextView.text = delivery.id.toString()
 
-        val productNumberTextView = view.findViewById<TextView>(R.id.delivery_card_product_number_textview)
+        val productNumberTextView = view.findViewById<TextView>(R.id.delivery_shop_name_textview)
         productNumberTextView.text = delivery.fee.toString()
 
         val deliveryCard = view.findViewById<CardView>(R.id.delivery_card_cardview)
