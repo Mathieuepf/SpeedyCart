@@ -10,6 +10,8 @@ import fr.epf.speedycart.api.repository.DeliveryPersonDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 public class DeliveryServiceImpl implements DeliveryService {
 
@@ -33,6 +35,50 @@ public class DeliveryServiceImpl implements DeliveryService {
             throw new DeliveryException("A delivery Person is already assign");
         }
 
+        return deliveryDao.save(delivery);
+    }
+
+    @Override
+    public Delivery setDeliveryPreparedData(Long id) {
+        Delivery delivery = deliveryDao.findById(id).orElseThrow(
+                () -> new DeliveryNotFoundException("Invalid Id"));
+        delivery.setPrepared(true);
+        return deliveryDao.save(delivery);
+    }
+
+    @Override
+    public Delivery setDeliveryGotData(Long id) {
+        Delivery delivery = deliveryDao.findById(id).orElseThrow(
+                () -> new DeliveryNotFoundException("Invalid Id"));
+        delivery.setGot(true);
+        return deliveryDao.save(delivery);
+    }
+
+    @Override
+    public Delivery setDeliveryAcceptedData(Long id) {
+        Delivery delivery = deliveryDao.findById(id).orElseThrow(
+                () -> new DeliveryNotFoundException("Invalid Id"));
+        delivery.setAccepted(true);
+        return deliveryDao.save(delivery);
+    }
+
+    @Override
+    public Delivery setDeliveryDeliveredData(Long id) {
+        Delivery delivery = deliveryDao.findById(id).orElseThrow(
+                () -> new DeliveryNotFoundException("Invalid Id"));
+        delivery.setDelivered(true);
+        delivery.setArriveAt(LocalDateTime.now().plusMinutes(5));
+        return deliveryDao.save(delivery);
+    }
+
+    @Override
+    public Delivery setDeliveryDisableData(Long id) {
+        Delivery delivery = deliveryDao.findById(id).orElseThrow(
+                () -> new DeliveryNotFoundException("Invalid Id"));
+        boolean bool = !delivery.isPrepared() && delivery.getDeliveryPerson() == null;
+        if (bool) {
+            delivery.setDisable(true);
+        }
         return deliveryDao.save(delivery);
     }
 }
