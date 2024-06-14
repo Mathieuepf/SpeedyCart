@@ -39,4 +39,7 @@ interface SpeedyCartApiService {
     
     @POST("/order")
     suspend fun addOrder(@Body orderDTO: OrderDTO): Response<Order>
+
+    @GET("/delivery/waiting/deliveryperson/{id}")
+    suspend fun getDeliveryWaitingByDeliveryPerson(@Path("id") id: Long): Response<List<OrderDTO>>
 }
