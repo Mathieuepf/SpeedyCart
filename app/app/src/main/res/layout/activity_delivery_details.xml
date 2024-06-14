@@ -9,107 +9,173 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/delivery_details_screen_top_bar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
         android:background="@color/cyan_background"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/delivery_details_top_imageview"
+            android:id="@+id/delivery_list_screen_imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            app:srcCompat="@drawable/logo"
+            app:tint="@color/dark_grey" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/delivery_details_screen_title_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_textview_delivery_details_screen_text"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_top_bar_layout"
-        app:layout_constraintVertical_bias="0.027" />
-
-    <TextView
-        android:id="@+id/delivery_details_screen_client_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_title_textview"
-        app:layout_constraintVertical_bias="0.03" />
-
-    <TextView
-        android:id="@+id/delivery_details_screen_address_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_client_textview"
-        app:layout_constraintVertical_bias="0.029" />
-
-    <TextView
-        android:id="@+id/delivery_details_screen_title_list_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_list_textview_delivery_details_screen_text"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_address_textview"
-        app:layout_constraintVertical_bias="0.026" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/delivery_details_screen_fragment_container"
-        android:name="fr.epf.min1.speedycart.ui.fragments.ProductListFragment"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/white"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/delivery_details_navbar_fragment_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_title_list_textview"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_top_bar_layout">
 
-    <Button
-        android:id="@+id/delivery_details_screen_button"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/button_delivery_details_screen_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_top_bar_layout"
-        app:layout_constraintVertical_bias="0.857" />
+        <TextView
+            android:id="@+id/delivery_details_screen_title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_textview_delivery_details_screen_text"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/delivery_details_navbar_fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/delivery_details_client_name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.018"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_title_textview"
+            app:layout_constraintVertical_bias="0.082"
+            tools:text="John Snow" />
+
+        <TextView
+            android:id="@+id/delivery_details_shop_address_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.02"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_shop_name_textview"
+            tools:text="44 rue des fleur" />
+
+        <TextView
+            android:id="@+id/delivery_details_screen_title_list_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="304dp"
+            android:text="@string/title_list_textview_delivery_details_screen_text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_salary_textview" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/delivery_details_screen_fragment_container"
+            android:name="fr.epf.min1.speedycart.ui.fragments.ProductListFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginVertical="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/delivery_details_screen_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_title_list_textview"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <Button
+            android:id="@+id/delivery_details_screen_button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/dark_grey"
+            android:text="@string/button_delivery_details_screen_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_title_list_textview"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/delivery_details_info_client_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/orange_background"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.021"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_title_textview"
+            tools:text="Information Client" />
+
+        <TextView
+            android:id="@+id/delivery_details_info_shop_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textColor="@color/orange_background"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.023"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_client_name_textview"
+            tools:text="Information Magasin" />
+
+        <TextView
+            android:id="@+id/delivery_details_shop_name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.019"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_info_shop_textview"
+            tools:text="Magasin nom" />
+
+        <TextView
+            android:id="@+id/delivery_details_salary_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/orange_background"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.021"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_shop_address_textview"
+            tools:text="Remuneration : 8€" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Footer -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/delivery_details_navbar_fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

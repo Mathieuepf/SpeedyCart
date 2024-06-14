@@ -31,14 +31,17 @@ class DeliveryDetailsActivity : AppCompatActivity() {
         }
     }
 
-    private fun initProducts(){
+    private fun initProducts() {
         val productList = Product.generateListProduct(5)
 
-        if(productList.isEmpty()){
+        if (productList.isEmpty()) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.delivery_details_screen_fragment_container, EmptyProductMessageFragment())
+                .replace(
+                    R.id.delivery_details_screen_fragment_container,
+                    EmptyProductMessageFragment()
+                )
                 .commit()
-        }else{
+        } else {
             val fragment = ProductListFragment()
             supportFragmentManager.beginTransaction()
                 .replace(R.id.delivery_details_screen_fragment_container, fragment)
