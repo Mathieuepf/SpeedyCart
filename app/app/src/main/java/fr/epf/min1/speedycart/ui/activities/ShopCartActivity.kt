@@ -14,13 +14,11 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.MainActivity
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.Address
-import fr.epf.min1.speedycart.data.Client
 import fr.epf.min1.speedycart.data.Delivery
 import fr.epf.min1.speedycart.data.Order
 import fr.epf.min1.speedycart.data.OrderDTO
-import fr.epf.min1.speedycart.data.Product
 import fr.epf.min1.speedycart.data.ProductDTO
-import fr.epf.min1.speedycart.data.ProductDTOAPI
+import fr.epf.min1.speedycart.data.ProductDTO2
 import fr.epf.min1.speedycart.data.User
 import fr.epf.min1.speedycart.data.UserDTO
 import fr.epf.min1.speedycart.localstorage.AppRepository
@@ -37,9 +35,7 @@ import sqip.Callback
 import sqip.CardEntry
 import sqip.CardEntry.DEFAULT_CARD_ENTRY_REQUEST_CODE
 import sqip.CardEntryActivityResult
-import java.time.LocalDate
 import java.time.LocalDateTime
-import java.util.concurrent.Executor
 
 private const val TAG = "ShopCartActivity"
 
@@ -197,18 +193,18 @@ class ShopCartActivity : AppCompatActivity() {
         }
     }
 
-    private fun toDTOAPI(productsDTO: List<ProductDTO>): List<ProductDTOAPI>{
+    private fun toDTOAPI(productsDTO: List<ProductDTO>): List<ProductDTO2>{
         val clientService = Retrofit
             .getInstance()
             .create(SpeedyCartApiService::class.java)
-        var result = emptyList<ProductDTOAPI>()
+        var result = emptyList<ProductDTO2>()
 
         runBlocking{
             try {
                 val response = clientService.getProducts()
                 if(response.isSuccessful){
                     val listProd = response.body()
-                    result = productsDTO.map { product -> ProductDTOAPI(
+                    result = productsDTO.map { product -> ProductDTO2(
                         listProd!!.find { prod -> prod.id == product.id }!!,
                         1
                     ) }
