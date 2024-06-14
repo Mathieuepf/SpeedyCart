@@ -8,15 +8,17 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.R
-import fr.epf.min1.speedycart.data.Delivery
+import fr.epf.min1.speedycart.data.OrderDTO
 import fr.epf.min1.speedycart.data.click
+import fr.epf.min1.speedycart.data.getCompleteAddress
 import fr.epf.min1.speedycart.ui.activities.DeliveryDetailsActivity
 
-class DeliveryViewHolder(item: View): RecyclerView.ViewHolder(item)
+class DeliveryViewHolder(item: View) : RecyclerView.ViewHolder(item)
 
 const val DELIVERY_EXTRA = "delivery"
+private const val TAG = "DeliveryAdapter"
 
-class DeliveryAdapter(val deliveries: List<Delivery>): RecyclerView.Adapter<DeliveryViewHolder>(){
+class DeliveryAdapter(val deliveries: List<OrderDTO>) : RecyclerView.Adapter<DeliveryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeliveryViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -27,22 +29,36 @@ class DeliveryAdapter(val deliveries: List<Delivery>): RecyclerView.Adapter<Deli
     override fun getItemCount() = deliveries.size
 
     override fun onBindViewHolder(holder: DeliveryViewHolder, position: Int) {
-        val delivery = deliveries[position]
+        val orderDTO = deliveries[position]
         val view = holder.itemView
 
-        val addressTextView = view.findViewById<TextView>(R.id.delivery_shop_address_textview)
-        addressTextView.text = delivery.id.toString()
-
-        val productNumberTextView = view.findViewById<TextView>(R.id.delivery_shop_name_textview)
-        productNumberTextView.text = delivery.fee.toString()
+        // fill in all information
+        setInfoOnCard(orderDTO, view)
 
         val deliveryCard = view.findViewById<CardView>(R.id.delivery_card_cardview)
         deliveryCard.click {
-            with(it.context){
+            with(it.context) {
                 val intent = Intent(this, DeliveryDetailsActivity::class.java)
-                intent.putExtra(DELIVERY_EXTRA, delivery)
+                intent.putExtra(DELIVERY_EXTRA, orderDTO)
                 startActivity(intent)
             }
         }
+    }
+
+    private fun setInfoOnCard(orderDTO: OrderDTO, view: View) {
+        val product = orderDTO.products[0].product
+        val shop = product.shop
+        val addressTextView = view.findViewById<TextView>(R.id.delivery_shop_address_textview)
+        addressTextView.text = shop.getCompleteAddress()
+
+        val nameShopTextView = view.findViewById<TextView>(R.id.delivery_shop_name_textview)
+        nameShopTextView.text = shop.name
+
+        val productNumberTextView =
+            view.findViewById<TextView>(R.id.delivery_product_number_textview)
+        productNumberTextView.text = "nb de produit: ${orderDTO.products.size}"
+
+        val priceTextView = view.findViewById<TextView>(R.id.delivery_price_textview)
+        priceTextView.text = String.format("%.2f", orderDTO.order.delivery.fee / 20) + " €"
     }
 }

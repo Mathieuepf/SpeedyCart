@@ -1,6 +1,7 @@
 package fr.epf.min1.speedycart.network
 
 import fr.epf.min1.speedycart.data.LoginDTO
+import fr.epf.min1.speedycart.data.OrderDTO
 import fr.epf.min1.speedycart.data.Product
 import fr.epf.min1.speedycart.data.Shop
 import fr.epf.min1.speedycart.data.User
@@ -17,6 +18,9 @@ interface SpeedyCartApiService {
     @GET("/user/{id}")
     suspend fun getUserById(@Path("id") id: Long): Response<User>
 
+    @GET("/shop/{id}")
+    suspend fun getShopById(@Path("id") id: Long): Response<Shop>
+
     @GET("/shops")
     suspend fun getShops(): Response<List<Shop>>
 
@@ -28,4 +32,7 @@ interface SpeedyCartApiService {
 
     @POST("/login")
     suspend fun login(@Body loginDTO: LoginDTO): Response<User>
+
+    @GET("/orders/waiting")
+    suspend fun getOrdersWaiting(): Response<List<OrderDTO>>
 }
