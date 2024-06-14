@@ -1,13 +1,17 @@
 package fr.epf.min1.speedycart.ui.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
+import fr.epf.min1.speedycart.MainActivity
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.OrderDTO
 import fr.epf.min1.speedycart.data.Product
+import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.data.getCompleteAddress
 import fr.epf.min1.speedycart.data.getCompleteName
 import fr.epf.min1.speedycart.localstorage.AppRepository
@@ -38,6 +42,9 @@ class DeliveryPersonDeliveryPlanActivity : AppCompatActivity() {
             // init product list
             val products = orderDTO.products.map { it.product }
             initProducts(products)
+
+            // set Button delivery delivered
+            setDeliveredButton(orderDTO)
         }
 
         // put navBar
@@ -48,6 +55,21 @@ class DeliveryPersonDeliveryPlanActivity : AppCompatActivity() {
                     NavigationBarFragment()
                 )
                 .commit()
+        }
+
+
+    }
+
+    private fun setDeliveredButton(orderDTO: OrderDTO) {
+        val deliveredButton = findViewById<Button>(R.id.delivery_person_delivery_delivered_button)
+        deliveredButton.click {
+            runBlocking {
+                val clientService = Retrofit.getInstance().create(SpeedyCartApiService::class.java)
+                orderDTO.order.delivery.id?.let { it1 -> clientService.setDeliveredDelivery(it1) }
+                val intent =
+                    Intent(this@DeliveryPersonDeliveryPlanActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
