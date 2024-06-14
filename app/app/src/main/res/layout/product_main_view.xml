@@ -9,50 +9,55 @@
         android:id="@+id/product_card_cardview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_margin="4dp"
+        android:background="@android:color/transparent"
+        app:cardBackgroundColor="@color/light_grey"
         app:cardCornerRadius="20dp">
 
         <ImageView
             android:id="@+id/product_card_imageview"
-            android:layout_width="match_parent"
+            android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/ic_launcher_background"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/less_rounded_white_square"
+            android:contentDescription="@string/product_image_description"
+            android:src="@drawable/inventory_fill0_24"
+            app:tint="@color/dark_grey"
+            android:layout_marginTop="8dp"/>
 
         <TextView
             android:id="@+id/name_product_card_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="90dp"
-            android:text="TextView"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/price_product_card_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="110dp"
-            android:text="TextView" />
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/weight_product_card_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="130dp"
-            android:text="TextView"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/shop_name_product_card_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="150dp"
-            android:text="TextView"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            tools:text="TextView" />
     </androidx.cardview.widget.CardView>
 </FrameLayout>
