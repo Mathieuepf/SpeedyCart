@@ -1,5 +1,6 @@
 package fr.epf.min1.speedycart.network
 
+import android.os.Bundle
 import fr.epf.min1.speedycart.data.LoginDTO
 import fr.epf.min1.speedycart.data.Order
 import fr.epf.min1.speedycart.data.OrderDTO
@@ -9,6 +10,7 @@ import fr.epf.min1.speedycart.data.User
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 
@@ -42,4 +44,7 @@ interface SpeedyCartApiService {
 
     @GET("/delivery/waiting/deliveryperson/{id}")
     suspend fun getDeliveryWaitingByDeliveryPerson(@Path("id") id: Long): Response<List<OrderDTO>>
+
+    @PATCH("/delivery/{id}/delivered")
+    suspend fun setDeliveredDelivery(@Path("id") id: Long)
 }
