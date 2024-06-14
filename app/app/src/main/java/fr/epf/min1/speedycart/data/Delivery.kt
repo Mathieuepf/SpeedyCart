@@ -8,7 +8,7 @@ import java.time.LocalDateTime
 data class Delivery(
     val id: Long?,
     val fee: Double,
-    val arriveAt: LocalDateTime,
+    val arriveAt: LocalDateTime?,
     val got: Boolean,
     val prepared: Boolean,
     val accepted: Boolean,

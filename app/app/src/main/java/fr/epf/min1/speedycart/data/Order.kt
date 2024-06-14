@@ -11,6 +11,6 @@ data class Order(
     val payed: Boolean,
     val client: Client,
     val delivery: Delivery,
-    val shipTo: Address,
-    val chargeTo: Address
+    val shipTo: Address?,
+    val chargeTo: Address?
 ): Parcelable
