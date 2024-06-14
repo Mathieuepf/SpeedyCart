@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -130,6 +129,23 @@ public class OrderServiceImpl implements OrderService {
         return ordersToOrderDTOs(orders);
     }
 
+    @Override
+    public List<OrderDTO> getOrdersWaitingShopData(long id) {
+        List<Delivery> deliveries = deliveryDao.findDeliveriesByDisableFalseAndPreparedFalse();
+        List<Order> orders = findOrdersFromDeliveries(deliveries);
+        List<OrderDTO> orderDTOS = ordersToOrderDTOs(orders);
+
+        List<OrderDTO> orderDTOsByIdShop = new ArrayList<>();
+        for (OrderDTO orderDTO : orderDTOS) {
+            ProductDTO productDTO = orderDTO.getProducts().get(0);
+            Product product = productDTO.getProduct();
+            if (product.getShop().getId() == id) {
+                orderDTOsByIdShop.add(orderDTO);
+            }
+        }
+        return orderDTOsByIdShop;
+    }
+
     private List<OrderDTO> ordersToOrderDTOs(List<Order> orders) {
         if (orders.isEmpty()) {
             throw new OrderNotFoundException("No records");
@@ -147,11 +163,14 @@ public class OrderServiceImpl implements OrderService {
 
     private List<Order> getOrdersWaiting() {
         List<Delivery> deliveries = deliveryDao.findDeliveriesByDisableFalseAndDeliveryPersonIsNull();
+        return findOrdersFromDeliveries(deliveries);
+    }
 
+    private List<Order> findOrdersFromDeliveries(List<Delivery> deliveries) {
         List<Order> orders = new ArrayList<>();
         for (Delivery delivery : deliveries) {
-            Optional<Order> optionalOrder = orderDao.findByDelivery(delivery);
-            optionalOrder.ifPresent(orders::add);
+            List<Order> orderList = orderDao.findByDelivery(delivery);
+            orders.addAll(orderList);
         }
         return orders;
     }
