@@ -26,6 +26,11 @@ public class OrderController {
         return orderService.getOrdersWaitingData();
     }
 
+    @GetMapping("/orders/shop/{id}")
+    public List<OrderDTO> getListOrdersWaitingShop(@PathVariable long id) {
+        return orderService.getOrdersWaitingShopData(id);
+    }
+
     @GetMapping("/order/{id}")
     public OrderDTO getOrderById(@PathVariable long id) {
         return orderService.getOrderData(id);

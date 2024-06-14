@@ -13,4 +13,6 @@ public interface OrderService {
     OrderDTO getOrderData(long id);
 
     List<OrderDTO> getOrdersWaitingData();
+
+    List<OrderDTO> getOrdersWaitingShopData(long id);
 }

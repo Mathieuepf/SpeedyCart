@@ -5,9 +5,9 @@ import fr.epf.speedycart.api.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
+import java.util.List;
 
 @Repository
 public interface OrderDao extends JpaRepository<Order, Long> {
-    Optional<Order> findByDelivery(Delivery delivery);
+    List<Order> findByDelivery(Delivery delivery);
 }
