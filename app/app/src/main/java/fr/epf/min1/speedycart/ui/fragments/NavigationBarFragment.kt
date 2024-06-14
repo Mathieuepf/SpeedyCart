@@ -40,13 +40,14 @@ class NavigationBarFragment : Fragment() {
 
         // show user login or account on button click
         loginAccountUserButton(view)
+        shopCartButton(view)
 
-        val shopCartButton = view.findViewById<ImageButton>(R.id.fragment_navbar_cart_imagebutton)
-        shopCartButton.click {
-            //val intent = Intent(view.context, ShopCartActivity::class.java)
-            val intent = Intent(view.context, DeliveryListActivity::class.java)
-            startActivity(intent)
-        }
+//        val shopCartButton = view.findViewById<ImageButton>(R.id.fragment_navbar_cart_imagebutton)
+//        shopCartButton.click {
+//            //val intent = Intent(view.context, ShopCartActivity::class.java)
+//            val intent = Intent(view.context, DeliveryListActivity::class.java)
+//            startActivity(intent)
+//        }
 
         return view
     }
@@ -70,6 +71,31 @@ class NavigationBarFragment : Fragment() {
                         TypeUser.SHOP -> Intent(view.context, ShopAccountActivity::class.java)
                         TypeUser.ADMIN -> Intent(view.context, AdminAccountActivity::class.java)
                         else -> Intent(view.context, DeliveryPersonAccountActivity::class.java)
+                    }
+                }
+                startActivity(intent)
+            }
+        }
+    }
+
+    private fun shopCartButton(view: View){
+        val cartButton =
+            view.findViewById<ImageButton>(R.id.fragment_navbar_cart_imagebutton)
+        val repository = AppRepository(requireActivity().application)
+
+        cartButton.click {
+            lifecycleScope.launch {
+                val users = withContext(Dispatchers.IO) {
+                    repository.getUser()
+                }
+                val intent = if(users.isEmpty()){
+                    Intent(view.context, LoginActivity::class.java)
+                } else {
+                    when (users[0].typeUser) {
+                        TypeUser.CLIENT -> Intent(view.context, ShopCartActivity::class.java)
+                        TypeUser.DELIVERYPERSONNE -> Intent(view.context, DeliveryListActivity::class.java)
+                        TypeUser.SHOP -> Intent(view.context, MainActivity::class.java)
+                        else -> Intent(view.context, MainActivity::class.java)
                     }
                 }
                 startActivity(intent)
