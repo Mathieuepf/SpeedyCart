@@ -153,11 +153,12 @@ class ShopCartActivity : AppCompatActivity() {
             withContext(Dispatchers.IO){
                 val prodListAPI = toDTOAPI(prodList)
                 val client = tryfetchClient(repo.getUser().first().id)!!.client
+                val date = LocalDateTime.now().plusHours(2)
                 Log.d(TAG, LocalDateTime.now().plusHours(2).toString())
                 val delivery = Delivery(
                     null,
                     20.00,
-                    LocalDateTime.now().plusHours(2),
+                    date,
                     false,
                     false,
                     false,
@@ -179,7 +180,7 @@ class ShopCartActivity : AppCompatActivity() {
                         ),
                     prodListAPI
                 )
-
+                Log.d(TAG, orderToAdd.toString())
                 try {
                     val response = clientService.addOrder(orderToAdd)
                     if(response.isSuccessful){
@@ -189,6 +190,7 @@ class ShopCartActivity : AppCompatActivity() {
                         throw Exception("commande pas passée")
                     }
                 }catch (e: Exception){
+                    Log.d(TAG, "erreur de commande")
                     throw Exception(e.message)
                 }
             }
