@@ -38,4 +38,8 @@ class AppRepository(application: Application) {
     fun deleteFromCart(productDTO: ProductDTO){
         productDao.deleteProduct(productDTO)
     }
+
+    fun wipeCart(){
+        productDao.wipeCart()
+    }
 }

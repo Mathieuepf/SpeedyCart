@@ -180,6 +180,7 @@ class ShopCartActivity : AppCompatActivity() {
                 try {
                     val response = clientService.addOrder(orderToAdd)
                     if(response.isSuccessful){
+                        repo.wipeCart()
                         val intent = Intent(this@ShopCartActivity, MainActivity::class.java)
                         startActivity(intent)
                     }else{
