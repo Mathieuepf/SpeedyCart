@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.Product
 import fr.epf.min1.speedycart.ui.fragments.EmptyProductMessageFragment
+import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
 import fr.epf.min1.speedycart.ui.fragments.ProductListFragment
 
 class DeliveryDetailsActivity : AppCompatActivity() {
@@ -22,6 +23,12 @@ class DeliveryDetailsActivity : AppCompatActivity() {
         }
 
         initProducts()
+
+        if (savedInstanceState == null) { // check navbar not already created
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.delivery_details_navbar_fragment_container, NavigationBarFragment())
+                .commit()
+        }
     }
 
     private fun initProducts(){
