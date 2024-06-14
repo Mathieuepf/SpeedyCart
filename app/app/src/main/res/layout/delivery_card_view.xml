@@ -1,33 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/delivery_card_cardview"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_height="77dp"
+        android:layout_margin="5dp"
+        android:background="@android:color/transparent"
+        android:padding="5dp"
+        app:cardBackgroundColor="@color/light_grey"
         app:cardCornerRadius="20dp">
 
-        <TextView
-            android:id="@+id/delivery_card_address_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:text="TextView" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="5dp">
 
-        <TextView
-            android:id="@+id/delivery_card_product_number_textview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:text="TextView" />
+            <TextView
+                android:id="@+id/delivery_shop_address_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="2dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/delivery_shop_name_textview"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="444 rue des fleur" />
+
+            <TextView
+                android:id="@+id/delivery_shop_name_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="2dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Shop" />
+
+            <TextView
+                android:id="@+id/delivery_product_number_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="2dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/delivery_shop_address_textview"
+                tools:text="nb produit : 5" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="24dp"
+                android:textAlignment="center"
+                android:textColor="@color/middle_bleu"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="5,2€" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 </FrameLayout>
