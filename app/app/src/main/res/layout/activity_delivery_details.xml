@@ -120,26 +120,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:text="@string/details_delivery_information_client_title"
             android:textColor="@color/orange_background"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.021"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_title_textview"
-            tools:text="Information Client" />
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_screen_title_textview" />
 
         <TextView
             android:id="@+id/delivery_details_info_shop_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
+            android:text="@string/details_delivery_information_magasin_tilte"
             android:textColor="@color/orange_background"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.023"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/delivery_details_client_name_textview"
-            tools:text="Information Magasin" />
+            app:layout_constraintTop_toBottomOf="@+id/delivery_details_client_name_textview" />
 
         <TextView
             android:id="@+id/delivery_details_shop_name_textview"
