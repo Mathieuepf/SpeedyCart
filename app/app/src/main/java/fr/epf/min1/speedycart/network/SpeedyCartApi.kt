@@ -7,7 +7,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-private const val BASE_URL = "http://192.168.142.191:9090"
+private const val BASE_URL = "http://192.168.1.164:9090"
 
 class Retrofit {
     companion object {

@@ -9,35 +9,41 @@
         android:id="@+id/shop_card_cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="4dp"
-        android:layout_marginVertical="4dp"
+        android:layout_margin="4dp"
+        android:background="@android:color/transparent"
+        android:padding="10dp"
+        app:cardBackgroundColor="@color/light_grey"
         app:cardCornerRadius="20dp"
         app:cardElevation="4dp">
 
         <ImageView
             android:id="@+id/shop_card_imageview"
-            android:layout_width="match_parent"
+            android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_launcher_background"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            android:background="@drawable/less_rounded_white_square"
+            android:contentDescription="@string/shop_image_description"
+            android:src="@drawable/storefront_fill0_24"
+            app:tint="@color/dark_grey"
+            android:layout_marginTop="8dp"/>
 
         <TextView
             android:id="@+id/name_shop_card_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="90dp"
-            android:text="TextView"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/adress_shop_card_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="110dp"
-            android:text="TextView"
-            android:textStyle="italic" />
+            android:layout_marginBottom="10dp"
+            android:textStyle="italic"
+            tools:text="TextView" />
     </androidx.cardview.widget.CardView>
 </FrameLayout>

@@ -21,78 +21,78 @@
 
         <SearchView
             android:id="@+id/searchView"
-            android:layout_width="249dp"
-            android:layout_height="43dp"
-            android:background="@color/white"
+            android:layout_width="355dp"
+            android:layout_height="38dp"
+            android:background="@drawable/rounded_white_rectangle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.12"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/main_search_button"
-            android:layout_width="118dp"
-            android:layout_height="50dp"
-            android:background="@drawable/button_background"
-            android:elevation="4dp"
-            android:text="@string/search_button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.97"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Shop content -->
-    <TextView
-        android:id="@+id/main_shop_textview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/shop_main_textview_text"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/main_navbar_fragment_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar_layout"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <FrameLayout
-        android:id="@+id/main_shop_fragment_container"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/middle_bar_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/main_products_textview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_shop_textview" />
-
-    <!-- Product Content -->
-    <TextView
-        android:id="@+id/main_products_textview"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/product_main_textview_text"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_shop_textview"
-        app:layout_constraintVertical_bias="0.398" />
-
-    <FrameLayout
-        android:id="@+id/main_product_fragment_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:background="@color/white"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/main_navbar_fragment_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_products_textview"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toBottomOf="@+id/top_bar_layout">
+
+        <!-- Shop content -->
+        <TextView
+            android:id="@+id/main_shop_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:paddingTop="10dp"
+            android:text="@string/shop_main_textview_text"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/main_shop_fragment_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/main_products_textview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_shop_textview" />
+
+        <!-- Product Content -->
+        <TextView
+            android:id="@+id/main_products_textview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:paddingTop="10dp"
+            android:text="@string/product_main_textview_text"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/main_shop_fragment_container"
+            app:layout_constraintTop_toBottomOf="@+id/main_shop_textview"
+            app:layout_constraintVertical_bias="0.447" />
+
+        <FrameLayout
+            android:id="@+id/main_product_fragment_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/main_products_textview"
+            app:layout_constraintVertical_bias="0.5" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Footer -->
     <androidx.constraintlayout.widget.ConstraintLayout

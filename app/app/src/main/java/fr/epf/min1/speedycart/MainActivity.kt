@@ -23,11 +23,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val loginButton = findViewById<Button>(R.id.main_search_button)
-        loginButton.click {
-            TODO("call api to find a shop")
-        }
-
         // Initialise shop and product info
         initProductInfo()
         initShopInfo()
