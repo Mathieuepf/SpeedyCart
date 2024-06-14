@@ -11,6 +11,7 @@ import fr.epf.min1.speedycart.network.Retrofit
 import fr.epf.min1.speedycart.network.SpeedyCartApiService
 import fr.epf.min1.speedycart.ui.fragments.DeliveryListFragment
 import fr.epf.min1.speedycart.ui.fragments.EmptyDeliveryFragment
+import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
 
 class DeliveryListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,6 +25,12 @@ class DeliveryListActivity : AppCompatActivity() {
         }
 
         initDeliveries()
+
+        if (savedInstanceState == null) { // check navbar not already created
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.delivery_list_navbar_fragment_container, NavigationBarFragment())
+                .commit()
+        }
     }
 
     private fun fetchDeliveries(): List<Delivery>{
