@@ -11,21 +11,35 @@ import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import fr.epf.min1.speedycart.MainActivity
 import fr.epf.min1.speedycart.R
+import fr.epf.min1.speedycart.data.Address
 import fr.epf.min1.speedycart.data.Client
+import fr.epf.min1.speedycart.data.Delivery
+import fr.epf.min1.speedycart.data.Order
+import fr.epf.min1.speedycart.data.OrderDTO
 import fr.epf.min1.speedycart.data.Product
 import fr.epf.min1.speedycart.data.ProductDTO
+import fr.epf.min1.speedycart.data.ProductDTOAPI
+import fr.epf.min1.speedycart.data.User
+import fr.epf.min1.speedycart.data.UserDTO
 import fr.epf.min1.speedycart.localstorage.AppRepository
+import fr.epf.min1.speedycart.network.Retrofit
+import fr.epf.min1.speedycart.network.SpeedyCartApiService
 import fr.epf.min1.speedycart.ui.adapters.DELETE_CART_EXTRA
 import fr.epf.min1.speedycart.ui.adapters.ProductCartAdapter
 import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import sqip.Callback
 import sqip.CardEntry
 import sqip.CardEntry.DEFAULT_CARD_ENTRY_REQUEST_CODE
 import sqip.CardEntryActivityResult
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.concurrent.Executor
 
 private const val TAG = "ShopCartActivity"
 
@@ -40,9 +54,9 @@ class ShopCartActivity : AppCompatActivity() {
         val productRecycler = findViewById<RecyclerView>(R.id.shop_cart_screen_product_list_recyclerview)
         val paymentButton = findViewById<Button>(R.id.shop_cart_screen_payment_button)
 
-        val testClient = Client.generate1Client()
+        //val testClient = Client.generate1Client()
 
-        nameContainer.text = "${testClient.firstname} ${testClient.lastname}"
+        //nameContainer.text = "${testClient.firstname} ${testClient.lastname}"
 
         productRecycler.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -57,6 +71,12 @@ class ShopCartActivity : AppCompatActivity() {
                 val productList = repository.getCart()
                 val productAdapter = ProductCartAdapter(productList)
                 productRecycler.adapter = productAdapter
+
+                val userDTO = findUserInLDB(repository)
+                val user = tryfetchClient(userDTO.id)
+
+                nameContainer.text = "${user!!.client!!.lastname} ${user.client!!.firstname}"
+                adressContainer.text = "10 Rue Monge, 34070 Montpellier"
             }
         }
 
@@ -80,6 +100,11 @@ class ShopCartActivity : AppCompatActivity() {
                         val card = cardResult.card
                         val nonce = cardResult.nonce
                         Log.d("ShopCartActivity", "paiement accepté")
+                        lifecycleScope.launch {
+                            withContext(Dispatchers.IO){
+                                addOrder(AppRepository(application).getCart(), AppRepository(application))
+                            }
+                        }
                     }
                     result.isCanceled() -> {
                         Log.d("ShopCartActivity", "paiement annulé")
@@ -87,5 +112,112 @@ class ShopCartActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    private suspend fun findUserInLDB(repository: AppRepository): UserDTO {
+        val usersDTO = withContext(Dispatchers.IO) {
+            repository.getUser()
+        }
+        return usersDTO[0]
+    }
+
+    private fun tryfetchClient(id: Long): User? {
+        val clientService = Retrofit
+            .getInstance()
+            .create(SpeedyCartApiService::class.java)
+
+        return runBlocking {
+            try {
+                val response = clientService.getUserById(id)
+                if (response.isSuccessful
+                    && response.body() != null
+                    && response.body()!!.client != null
+                ) {
+                    response.body()!!
+                } else {
+                    null
+                }
+            } catch (e: Exception) {
+                Log.d(TAG, e.toString())
+                null
+            }
+        }
+    }
+
+    private fun addOrder(prodList: List<ProductDTO>, repo: AppRepository){
+        val clientService = Retrofit
+            .getInstance()
+            .create(SpeedyCartApiService::class.java)
+
+        lifecycleScope.launch {
+            withContext(Dispatchers.IO){
+                val prodListAPI = toDTOAPI(prodList)
+                val client = tryfetchClient(repo.getUser().first().id)!!.client
+                Log.d(TAG, LocalDateTime.now().plusHours(2).toString())
+                val delivery = Delivery(
+                    null,
+                    20.00,
+                    LocalDateTime.now().plusHours(2),
+                    false,
+                    false,
+                    false,
+                    false,
+                    false,
+                    null
+                )
+                val shipAddress = Address.generate1Address()
+
+                val orderToAdd = OrderDTO(
+                    Order(
+                        null,
+                        LocalDateTime.now(),
+                        false,
+                            client!!,
+                            delivery,
+                            shipAddress,
+                            shipAddress
+                        ),
+                    prodListAPI
+                )
+
+                try {
+                    val response = clientService.addOrder(orderToAdd)
+                    if(response.isSuccessful){
+                        val intent = Intent(this@ShopCartActivity, MainActivity::class.java)
+                        startActivity(intent)
+                    }else{
+                        throw Exception("commande pas passée")
+                    }
+                }catch (e: Exception){
+                    throw Exception(e.message)
+                }
+            }
+        }
+    }
+
+    private fun toDTOAPI(productsDTO: List<ProductDTO>): List<ProductDTOAPI>{
+        val clientService = Retrofit
+            .getInstance()
+            .create(SpeedyCartApiService::class.java)
+        var result = emptyList<ProductDTOAPI>()
+
+        runBlocking{
+            try {
+                val response = clientService.getProducts()
+                if(response.isSuccessful){
+                    val listProd = response.body()
+                    result = productsDTO.map { product -> ProductDTOAPI(
+                        listProd!!.find { prod -> prod.id == product.id }!!,
+                        1
+                    ) }
+                }else{
+                    throw Exception("liste non récupérée")
+                }
+            }catch (e: Exception){
+                throw Exception(e.message)
+            }
+        }
+
+        return result
     }
 }
