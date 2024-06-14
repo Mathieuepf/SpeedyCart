@@ -83,4 +83,6 @@
     <string name="button_delivery_details_screen_text">Accepter la livraison</string>
     <string name="product_image_description">product image</string>
     <string name="shop_image_description">Shop image</string>
+    <string name="details_delivery_information_magasin_tilte">Information Magasin</string>
+    <string name="details_delivery_information_client_title">Information Client</string>
 </resources>
