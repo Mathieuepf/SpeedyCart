@@ -2,12 +2,12 @@ package fr.epf.speedycart.api.controller;
 
 import fr.epf.speedycart.api.model.Delivery;
 import fr.epf.speedycart.api.model.DeliveryPerson;
+import fr.epf.speedycart.api.model.OrderDTO;
 import fr.epf.speedycart.api.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class DeliveryController {
@@ -42,5 +42,10 @@ public class DeliveryController {
     @PatchMapping("/delivery/{deliveryId}/disable")
     public Delivery updateDeliveryDisable(@PathVariable Long deliveryId) {
         return deliveryService.setDeliveryDisableData(deliveryId);
+    }
+
+    @GetMapping("/delivery/waiting/deliveryperson/{id}")
+    public List<OrderDTO> getListOrdersWaiting(@PathVariable long id) {
+        return deliveryService.getDeliveryWaitingByDeliveryPersonData(id);
     }
 }
