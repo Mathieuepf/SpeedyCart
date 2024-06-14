@@ -1,6 +1,6 @@
 package fr.epf.min1.speedycart.network
 
-import android.os.Bundle
+import fr.epf.min1.speedycart.data.DeliveryPerson
 import fr.epf.min1.speedycart.data.LoginDTO
 import fr.epf.min1.speedycart.data.Order
 import fr.epf.min1.speedycart.data.OrderDTO
@@ -47,4 +47,10 @@ interface SpeedyCartApiService {
 
     @PATCH("/delivery/{id}/delivered")
     suspend fun setDeliveredDelivery(@Path("id") id: Long)
+
+    @PATCH("/delivery/{id}/deliveryPerson")
+    suspend fun setDeliveryPersonDelivery(
+        @Path("id") id: Long,
+        @Body deliveryPerson: DeliveryPerson
+    )
 }
