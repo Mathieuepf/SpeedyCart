@@ -1,13 +1,17 @@
 package fr.epf.min1.speedycart.ui.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.OrderDTO
+import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.data.getCompleteName
+import fr.epf.min1.speedycart.ui.activities.ShopOrderDetailsActivity
 
 class ShopOrderViewHolder(item: View) : RecyclerView.ViewHolder(item)
 
@@ -31,16 +35,15 @@ class ShopOrderAdapter(val orders: List<OrderDTO>) : RecyclerView.Adapter<ShopOr
         // fill in all information
         setInfoOnCard(orderDTO, view)
 
-        /*val deliveryCard = view.findViewById<CardView>(R.id.delivery_card_cardview)
-        deliveryCard.click {
+        val orderCard = view.findViewById<CardView>(R.id.shop_order_card_cardview)
+        orderCard.click {
             with(it.context) {
-                val intent = Intent(this, DeliveryDetailsActivity::class.java)
+                val intent = Intent(this, ShopOrderDetailsActivity::class.java)
                 intent.putExtra(SHOP_ORDER_EXTRA, orderDTO)
                 startActivity(intent)
             }
-        }*/
+        }
     }
-
 
     private fun setInfoOnCard(orderDTO: OrderDTO, view: View) {
         val orderAtTextView = view.findViewById<TextView>(R.id.shop_order_order_at_textview)
