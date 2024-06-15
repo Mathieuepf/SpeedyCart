@@ -87,4 +87,6 @@
     <string name="details_delivery_information_client_title">Information Client</string>
     <string name="commande_livre_button">Commande livrée</string>
     <string name="statue_commande_text">Statue commande</string>
+    <string name="fragment_shop_order_empty_text">Auncune commande trouvée</string>
+    <string name="shop_delivery_order_waiting_title">Commande en attente</string>
 </resources>
