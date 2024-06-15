@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.DeliveryStatusActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/delivery_status_screen_top_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/cyan_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/delivery_status_screen_logo_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.transferwise.sequencelayout.SequenceLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/delivery_status_navbar_fragment_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delivery_status_screen_top_bar_layout"
+        app:progressBackgroundColor="@color/material_dynamic_neutral50"
+        app:progressForegroundColor="@color/orange_background">
+
+        <com.transferwise.sequencelayout.SequenceStep
+            android:id="@+id/step1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="" />
+
+        <com.transferwise.sequencelayout.SequenceStep
+            android:id="@+id/step2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="" />
+
+        <com.transferwise.sequencelayout.SequenceStep
+            android:id="@+id/step3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="" />
+
+        <com.transferwise.sequencelayout.SequenceStep
+            android:id="@+id/step4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="" />
+
+    </com.transferwise.sequencelayout.SequenceLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/delivery_status_navbar_fragment_container"
+        android:name="fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/delivery_status_screen_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:text="@string/button_delivery_status_screen_text"
+        app:layout_constraintBottom_toTopOf="@+id/delivery_status_navbar_fragment_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/delivery_status_screen_top_bar_layout"
+        app:layout_constraintVertical_bias="0.82" />
+</androidx.constraintlayout.widget.ConstraintLayout>

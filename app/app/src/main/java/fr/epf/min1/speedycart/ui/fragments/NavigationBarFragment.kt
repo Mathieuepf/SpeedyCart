@@ -22,6 +22,7 @@ import fr.epf.min1.speedycart.ui.activities.ClientAccountActivity
 import fr.epf.min1.speedycart.ui.activities.DeliveryListActivity
 import fr.epf.min1.speedycart.ui.activities.DeliveryPersonAccountActivity
 import fr.epf.min1.speedycart.ui.activities.DeliveryPersonDeliveryPlanActivity
+import fr.epf.min1.speedycart.ui.activities.DeliveryStatusActivity
 import fr.epf.min1.speedycart.ui.activities.LoginActivity
 import fr.epf.min1.speedycart.ui.activities.ShopAccountActivity
 import fr.epf.min1.speedycart.ui.activities.ShopCartActivity

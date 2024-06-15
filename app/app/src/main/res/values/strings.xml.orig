@@ -87,12 +87,15 @@
     <string name="details_delivery_information_client_title">Information Client</string>
     <string name="commande_livre_button">Commande livrée</string>
     <string name="statue_commande_text">Statue commande</string>
+<<<<<<< HEAD
     <string name="fragment_shop_order_empty_text">Auncune commande trouvée</string>
     <string name="shop_delivery_order_waiting_title">Commande en attente</string>
     <string name="title_textview_shop_order_details_text">Details de la Commande</string>
     <string name="title_list_textview_shop_order_details_text">Produits commandés</string>
     <string name="button_shop_order_details_text">Commande prete</string>
     <string name="shop_order_details_information_delivery_person_tilte">Informations Livreur</string>
+=======
     <string name="step_1_title_delivery_status_screen_text">Votre commande à été reçu par notre service</string>
     <string name="button_delivery_status_screen_text">J\'ai reçu ma commande</string>
+>>>>>>> 8e6a04e (feat(app): Mise en place de l'écran de suivi de la commande d'un utilisateur)
 </resources>
