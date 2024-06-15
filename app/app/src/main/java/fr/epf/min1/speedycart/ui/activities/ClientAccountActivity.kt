@@ -78,19 +78,16 @@ class ClientAccountActivity : AppCompatActivity() {
         val lastnameTextView = findViewById<TextView>(R.id.client_account_last_name)
         val firstnameTextView = findViewById<TextView>(R.id.client_account_first_name)
         val emailTextView = findViewById<TextView>(R.id.client_account_email)
-        val passwordTextView = findViewById<TextView>(R.id.client_account_password)
         val dateOfBirthTextView = findViewById<TextView>(R.id.client_account_dateofbirth)
         if (user != null) {
             lastnameTextView.text = user.client!!.lastname
             firstnameTextView.text = user.client!!.firstname
             emailTextView.text = user.mail
-            passwordTextView.text = user.password
             dateOfBirthTextView.text = user.client!!.dateOfBirth.toString()
         } else {
             lastnameTextView.text = "error"
             firstnameTextView.text = "error"
             emailTextView.text = "error"
-            passwordTextView.text = "error"
             dateOfBirthTextView.text = "error"
         }
     }

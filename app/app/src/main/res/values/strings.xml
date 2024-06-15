@@ -66,7 +66,7 @@
     <string name="textview_fragment_product_empty_text">Une erreur est survenue lors du chargement</string>
     <string name="empty_shop_fragment_text">une erreur est survenue lors du chargement</string>
     <string name="logout_button_description">logout button</string>
-    <string name="client_account_title">Compte Client</string>
+    <string name="client_account_title">Votre Compte Client</string>
     <string name="admin_account_title">Votre Compte Admin</string>
     <string name="shop_account_title">Compte Boutique</string>
     <string name="delivery_person_account_title">Compte Livreur</string>

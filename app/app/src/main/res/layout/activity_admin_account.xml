@@ -94,7 +94,7 @@
             tools:ignore="UseAppTint" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView_des_iu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="88dp"
@@ -112,7 +112,7 @@
         <Button
             android:id="@+id/button2_account_admin"
             android:layout_width="255dp"
-            android:layout_height="47dp"
+            android:layout_height="55dp"
             android:backgroundTint="@color/orange_background"
             android:text="Modifier les informations"
             app:layout_constraintBottom_toTopOf="@+id/button1_account_admin"
@@ -122,7 +122,7 @@
         <Button
             android:id="@+id/button1_account_admin"
             android:layout_width="255dp"
-            android:layout_height="47dp"
+            android:layout_height="55dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/orange_background"
             android:text="Modifier le mot de passe"

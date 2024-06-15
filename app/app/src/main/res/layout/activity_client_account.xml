@@ -6,106 +6,210 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.ClientAccountActivity">
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/client_account_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/client_account_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/cyan_background"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/delivery_list_screen_top_bar_layout"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/cyan_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        <ImageView
+            android:id="@+id/delivery_list_screen_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo"
+            app:tint="@color/dark_grey" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- middle -->
-    <TextView
-        android:id="@+id/client_account_last_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/client_account_navbar_fragment_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/client_account_first_name"
-        app:layout_constraintVertical_bias="0.172"
-        tools:text="@tools:sample/last_names" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
 
-    <TextView
-        android:id="@+id/client_account_first_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
-        app:layout_constraintBottom_toTopOf="@+id/client_account_navbar_fragment_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:text="@tools:sample/first_names" />
-
-    <TextView
-        android:id="@+id/client_account_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/client_account_navbar_fragment_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/client_account_last_name"
-        app:layout_constraintVertical_bias="0.194"
-        tools:text="email" />
-
-    <TextView
-        android:id="@+id/client_account_password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/client_account_navbar_fragment_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/client_account_email"
-        app:layout_constraintVertical_bias="0.263"
-        tools:text="mot de passe" />
+        app:layout_constraintTop_toBottomOf="@+id/delivery_list_screen_top_bar_layout">
 
-    <TextView
-        android:id="@+id/client_account_dateofbirth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/client_account_navbar_fragment_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/client_account_password"
-        app:layout_constraintVertical_bias="0.36"
-        tools:text="date de naissance" />
+        <TextView
+            android:id="@+id/textView_nom_iu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/rounded_dark_grey_rectangle"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="3dp"
+            android:text="Nom"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.835" />
 
-    <ImageButton
-        android:id="@+id/client_account_logout_imagebutton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@drawable/round_button"
-        android:clickable="true"
-        android:contentDescription="@string/logout_button_description"
-        android:elevation="4dp"
-        android:scaleType="centerInside"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/client_account_navbar_fragment_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logout_fill0_24"
-        tools:ignore="UseAppTint" />
+        <TextView
+            android:id="@+id/textView_email_iu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="148dp"
+            android:background="@drawable/rounded_dark_grey_rectangle"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="3dp"
+            android:text="Email"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.835" />
 
+        <TextView
+            android:id="@+id/textView_dob_iu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="192dp"
+            android:background="@drawable/rounded_dark_grey_rectangle"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="3dp"
+            android:text="Date de naissance"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.835" />
+
+        <TextView
+            android:id="@+id/textView_prenom_iu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="56dp"
+            android:background="@drawable/rounded_dark_grey_rectangle"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="3dp"
+            android:text="Prenom"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.835" />
+
+        <TextView
+            android:id="@+id/client_account_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/client_account_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/salmon"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.82" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <!-- middle -->
+
+        <TextView
+            android:id="@+id/client_account_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toEndOf="@+id/textView_nom_iu"
+            app:layout_constraintTop_toBottomOf="@+id/client_account_first_name"
+            tools:text="@tools:sample/last_names" />
+
+        <TextView
+            android:id="@+id/client_account_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="60dp"
+            app:layout_constraintStart_toEndOf="@+id/textView_prenom_iu"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            tools:text="@tools:sample/first_names" />
+
+
+        <TextView
+            android:id="@+id/client_account_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.142"
+            app:layout_constraintStart_toEndOf="@+id/textView_email_iu"
+            app:layout_constraintTop_toBottomOf="@+id/client_account_last_name"
+            tools:text="email" />
+
+        <TextView
+            android:id="@+id/client_account_dateofbirth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.247"
+            app:layout_constraintStart_toEndOf="@+id/textView_dob_iu"
+            app:layout_constraintTop_toBottomOf="@+id/client_account_email"
+            tools:text="date de naissance" />
+
+        <ImageButton
+            android:id="@+id/client_account_logout_imagebutton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/round_button"
+            android:clickable="true"
+            android:contentDescription="@string/logout_button_description"
+            android:elevation="4dp"
+            android:scaleType="centerInside"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.955"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logout_fill0_24"
+            tools:ignore="UseAppTint" />
+        <Button
+            android:id="@+id/button2_account_admin"
+            android:layout_width="255dp"
+            android:layout_height="55dp"
+            android:backgroundTint="@color/orange_background"
+            android:text="Modifier les informations"
+            app:layout_constraintBottom_toTopOf="@+id/button1_account_admin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button1_account_admin"
+            android:layout_width="255dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/orange_background"
+            android:text="Modifier le mot de passe"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Footer -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/client_account_navbar_fragment_container"
