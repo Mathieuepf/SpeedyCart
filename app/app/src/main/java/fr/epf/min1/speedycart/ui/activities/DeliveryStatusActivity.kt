@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -46,9 +47,18 @@ class DeliveryStatusActivity : AppCompatActivity() {
         val step3 = findViewById<View>(R.id.step3) as SequenceStep
         val step4 = findViewById<View>(R.id.step4) as SequenceStep
         val button = findViewById<Button>(R.id.delivery_status_screen_button)
+        val endMessage = findViewById<TextView>(R.id.delivery_status_screen_end_message_textview)
+        endMessage.text = ""
 
         lifecycleScope.launch {
             when(init()){
+                4 -> {
+                    step1.setTitle("Votre commande à été reçu par notre service")
+                    step2.setTitle("Votre commande est en attente d'un livreur disponible")
+                    step3.setTitle("Votre commande à été prise en charge par un livreur")
+                    step4.setTitle("Votre commande est arrivée !")
+                    endMessage.text = "Vous avez récupéré cette commande"
+                }
                 3 ->{
                     step1.setTitle("Votre commande à été reçu par notre service")
                     step2.setTitle("Votre commande est en attente d'un livreur disponible")
