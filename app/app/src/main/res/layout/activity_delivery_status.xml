@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.DeliveryStatusActivity">
 
+    <TextView
+        android:id="@+id/delivery_status_screen_end_message_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/delivery_status_navbar_fragment_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/sequenceLayout"
+        app:layout_constraintTop_toBottomOf="@+id/delivery_status_screen_top_bar_layout"
+        app:layout_constraintVertical_bias="0.69" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/delivery_status_screen_top_bar_layout"
         android:layout_width="match_parent"
@@ -28,6 +39,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.transferwise.sequencelayout.SequenceLayout
+        android:id="@+id/sequenceLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"

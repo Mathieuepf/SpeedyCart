@@ -24,6 +24,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo" />
+
+        <ImageButton
+            android:id="@+id/shop_cart_screen_status_imagebutton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/button_background"
+            android:src="@drawable/list_bulleted_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.931"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
@@ -49,6 +50,7 @@ class ShopCartActivity : AppCompatActivity() {
         val adressContainer = findViewById<TextView>(R.id.shop_cart_screen_adress_container_textview)
         val productRecycler = findViewById<RecyclerView>(R.id.shop_cart_screen_product_list_recyclerview)
         val paymentButton = findViewById<Button>(R.id.shop_cart_screen_payment_button)
+        val statusButton = findViewById<ImageButton>(R.id.shop_cart_screen_status_imagebutton)
 
         //val testClient = Client.generate1Client()
 
@@ -78,6 +80,10 @@ class ShopCartActivity : AppCompatActivity() {
 
         paymentButton.setOnClickListener {
             CardEntry.startCardEntryActivity(this, true, DEFAULT_CARD_ENTRY_REQUEST_CODE)
+        }
+
+        statusButton.setOnClickListener{
+            startActivity(Intent(this, DeliveryStatusActivity::class.java))
         }
 
         if (savedInstanceState == null) { // check navbar not already created
