@@ -105,7 +105,12 @@ VALUES ('alice@example.com', 'password123', 1, NULL, NULL, NULL),
        ('olivia@example.com', 'password789', 5, NULL, NULL, NULL),
        ('noah@example.com', 'password101', 6, NULL, NULL, NULL),
        ('john@example.com', 'password121', NULL, NULL, NULL, 1),
-       ('lila@example.com', 'password123', NULL, NULL, NULL, 2);
+       ('lila@example.com', 'password123', NULL, NULL, NULL, 2),
+       ('titi@example.com', 'password456', NULL, 1, NULL, NULL),
+       ('lala@example.com', 'password456', NULL, 4, NULL, NULL),
+       ('po@example.com', 'password456', NULL, 5, NULL, NULL),
+       ('tinky@example.com', 'password456', NULL, 6, NULL, NULL),
+       ('winky@example.com', 'password456', NULL, 3, NULL, NULL);
 
 INSERT INTO Delivery (fee, arrive_at, got, prepared, accepted, delivered, disable, delivery_person_id)
 VALUES (10.5, '2024-05-03 14:00:00', TRUE, TRUE, FALSE, FALSE, FALSE, 1),
