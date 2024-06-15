@@ -15,6 +15,7 @@ import fr.epf.min1.speedycart.data.ProductDTO
 import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.localstorage.AppRepository
 import fr.epf.min1.speedycart.ui.adapters.PRODUCT_EXTRA
+import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -27,6 +28,17 @@ class ProductDisplayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_display)
 
+        setInfoOnPage()
+
+        // put navbar
+        if (savedInstanceState == null) { // check navbar not already created
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.product_display_navbar_fragment_container, NavigationBarFragment())
+                .commit()
+        }
+    }
+
+    private fun setInfoOnPage() {
         val nameTextView = findViewById<TextView>(R.id.product_display_name_textview)
         val priceTextView = findViewById<TextView>(R.id.product_display_price_textview)
         val weightTextView = findViewById<TextView>(R.id.product_display_weight_textview)
@@ -38,12 +50,12 @@ class ProductDisplayActivity : AppCompatActivity() {
             val product = this.getParcelable(PRODUCT_EXTRA, Product::class.java)
             product?.apply {
                 nameTextView.text = this.name
-                priceTextView.text = "${this.unitPrice}€"
-                weightTextView.text = "${this.weight}g"
+                priceTextView.text = String.format("%.2f", this.unitPrice) + " €"
+                weightTextView.text = String.format("%.2f", this.weight) + " g"
                 shopNameTextView.text = this.shop.name
                 descriptionTextView.text = this.description
 
-                addButton.setOnClickListener{
+                addButton.setOnClickListener {
                     val productDTO = this.id?.let { it1 ->
                         ProductDTO(
                             it1,
@@ -58,7 +70,7 @@ class ProductDisplayActivity : AppCompatActivity() {
 
                     val repository = AppRepository(application)
                     lifecycleScope.launch {
-                        withContext(Dispatchers.IO){
+                        withContext(Dispatchers.IO) {
                             repository.addToCart(productDTO!!)
                             //shortToast()
                             Log.d(TAG, "add effectué")
@@ -69,7 +81,7 @@ class ProductDisplayActivity : AppCompatActivity() {
         }
     }
 
-    private fun shortToast(){
+    private fun shortToast() {
         Toast.makeText(
             this@ProductDisplayActivity,
             "Produit ajouté", Toast.LENGTH_SHORT
