@@ -1,17 +1,24 @@
 package fr.epf.min1.speedycart.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import fr.epf.min1.speedycart.MainActivity
 import fr.epf.min1.speedycart.R
 import fr.epf.min1.speedycart.data.OrderDTO
+import fr.epf.min1.speedycart.data.click
 import fr.epf.min1.speedycart.data.getCompleteName
+import fr.epf.min1.speedycart.network.Retrofit
+import fr.epf.min1.speedycart.network.SpeedyCartApiService
 import fr.epf.min1.speedycart.ui.adapters.SHOP_ORDER_EXTRA
 import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
 import fr.epf.min1.speedycart.ui.fragments.ProductDtoListFragment
+import kotlinx.coroutines.runBlocking
 
 class ShopOrderDetailsActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -31,6 +38,25 @@ class ShopOrderDetailsActivity : AppCompatActivity() {
 
         // show protuct and there quantity
         setProductList()
+
+        // set order ready button
+        setOrderReadyButton()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun setOrderReadyButton() {
+        val orderDTO =
+            intent.extras?.getParcelable(SHOP_ORDER_EXTRA, OrderDTO::class.java)
+        val preparedButton = findViewById<Button>(R.id.shop_order_details_button)
+        preparedButton.click {
+            runBlocking {
+                val clientService = Retrofit.getInstance().create(SpeedyCartApiService::class.java)
+                orderDTO?.order?.delivery?.id?.let { it1 -> clientService.setPreparedDelivery(it1) }
+                val intent =
+                    Intent(this@ShopOrderDetailsActivity, MainActivity::class.java)
+                startActivity(intent)
+            }
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)

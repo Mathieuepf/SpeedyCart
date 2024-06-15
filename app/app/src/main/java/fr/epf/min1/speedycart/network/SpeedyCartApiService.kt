@@ -56,4 +56,7 @@ interface SpeedyCartApiService {
 
     @GET("/orders/shop/{id}")
     suspend fun getOrderWaitingByShop(@Path("id") id: Long): Response<List<OrderDTO>>
+
+    @PATCH("/delivery/{id}/prepared")
+    suspend fun setPreparedDelivery(@Path("id") id: Long)
 }
