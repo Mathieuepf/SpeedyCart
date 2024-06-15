@@ -68,8 +68,8 @@
     <string name="logout_button_description">logout button</string>
     <string name="client_account_title">Votre Compte Client</string>
     <string name="admin_account_title">Votre Compte Admin</string>
-    <string name="shop_account_title">Compte Boutique</string>
-    <string name="delivery_person_account_title">Compte Livreur</string>
+    <string name="shop_account_title">Votre Compte Boutique</string>
+    <string name="delivery_person_account_title">Votre Compte Livreur</string>
     <string name="name_textview_shop_cart_screen_text">Nom du destinataire</string>
     <string name="adresse_textview_shop_cart_screen_text">Adresse de livraison</string>
     <string name="product_list_textview_shop_cart_screen_text">Produits dans le panier</string>
