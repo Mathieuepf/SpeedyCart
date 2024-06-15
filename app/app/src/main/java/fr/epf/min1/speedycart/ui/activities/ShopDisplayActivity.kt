@@ -17,6 +17,7 @@ import fr.epf.min1.speedycart.network.SpeedyCartApiService
 import fr.epf.min1.speedycart.ui.adapters.ProductAdapter
 import fr.epf.min1.speedycart.ui.adapters.SHOP_EXTRA
 import fr.epf.min1.speedycart.ui.adapters.ShopAdapter
+import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
 import kotlinx.coroutines.runBlocking
 
 private const val TAG = "ShopDisplayActivity"
@@ -40,6 +41,13 @@ class ShopDisplayActivity : AppCompatActivity() {
 
                 this.id?.let { setProductRecyclerView(it) }
             }
+        }
+
+        // put navBar
+        if (savedInstanceState == null) { // check navbar not already created
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.shop_display_navbar_fragment_container, NavigationBarFragment())
+                .commit()
         }
     }
 
