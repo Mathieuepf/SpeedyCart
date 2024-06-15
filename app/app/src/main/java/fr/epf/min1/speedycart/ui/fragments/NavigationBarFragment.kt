@@ -25,6 +25,7 @@ import fr.epf.min1.speedycart.ui.activities.DeliveryPersonDeliveryPlanActivity
 import fr.epf.min1.speedycart.ui.activities.LoginActivity
 import fr.epf.min1.speedycart.ui.activities.ShopAccountActivity
 import fr.epf.min1.speedycart.ui.activities.ShopCartActivity
+import fr.epf.min1.speedycart.ui.activities.ShopDeliveryPlanActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -107,11 +108,10 @@ class NavigationBarFragment : Fragment() {
                     when (users[0].typeUser) {
                         TypeUser.CLIENT -> Intent(view.context, ShopCartActivity::class.java)
                         TypeUser.DELIVERYPERSONNE -> intentForDeliveryPerson(
-                            view,
-                            users[0].typeUserId
+                            view, users[0].typeUserId
                         )
 
-                        TypeUser.SHOP -> Intent(view.context, MainActivity::class.java)
+                        TypeUser.SHOP -> Intent(view.context, ShopDeliveryPlanActivity::class.java)
                         else -> Intent(view.context, MainActivity::class.java)
                     }
                 }
