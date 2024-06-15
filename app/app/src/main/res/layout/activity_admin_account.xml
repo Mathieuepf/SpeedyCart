@@ -6,59 +6,131 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.AdminAccountActivity">
 
-    <!-- Title -->
-    <TextView
-        android:id="@+id/admin_account_title_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/admin_account_title"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/cyan_background"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/delivery_list_screen_top_bar_layout"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:background="@color/cyan_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        <ImageView
+            android:id="@+id/delivery_list_screen_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logo"
+            app:tint="@color/dark_grey" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- middle -->
-
-    <TextView
-        android:id="@+id/admin_account_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/admin_account_navbar_fragment_container"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.423"
-        tools:text="@tools:sample/last_names" />
+        app:layout_constraintTop_toBottomOf="@+id/delivery_list_screen_top_bar_layout">
 
-    <ImageButton
-        android:id="@+id/admin_account_logout_imagebutton"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@drawable/round_button"
-        android:clickable="true"
-        android:contentDescription="@string/logout_button_description"
-        android:elevation="4dp"
-        android:scaleType="centerInside"
-        android:tint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/admin_account_navbar_fragment_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline2"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logout_fill0_24"
-        tools:ignore="UseAppTint" />
+        <TextView
+            android:id="@+id/admin_account_title_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/admin_account_title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/salmon"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.82" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.19" />
+
+
+        <TextView
+            android:id="@+id/admin_account_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.204"
+            tools:text="@tools:sample/last_names" />
+
+        <ImageButton
+            android:id="@+id/admin_account_logout_imagebutton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/round_button"
+            android:clickable="true"
+            android:contentDescription="@string/logout_button_description"
+            android:elevation="4dp"
+            android:scaleType="centerInside"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.955"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logout_fill0_24"
+            tools:ignore="UseAppTint" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:background="@drawable/rounded_dark_grey_rectangle"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="3dp"
+            android:text="Description"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/admin_account_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintVertical_bias="0.835" />
+
+        <Button
+            android:id="@+id/button2_account_admin"
+            android:layout_width="255dp"
+            android:layout_height="47dp"
+            android:backgroundTint="@color/orange_background"
+            android:text="Modifier les informations"
+            app:layout_constraintBottom_toTopOf="@+id/button1_account_admin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button1_account_admin"
+            android:layout_width="255dp"
+            android:layout_height="47dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/orange_background"
+            android:text="Modifier le mot de passe"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <!-- Footer -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/admin_account_navbar_fragment_container"
