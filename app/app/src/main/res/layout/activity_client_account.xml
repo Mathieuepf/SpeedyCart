@@ -35,7 +35,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
-
         app:layout_constraintBottom_toTopOf="@+id/client_account_navbar_fragment_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,8 +69,7 @@
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2"
-            app:layout_constraintVertical_bias="0.835" />
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
         <TextView
             android:id="@+id/textView_dob_iu"
@@ -189,6 +187,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logout_fill0_24"
             tools:ignore="UseAppTint" />
+
         <Button
             android:id="@+id/button2_account_admin"
             android:layout_width="255dp"
