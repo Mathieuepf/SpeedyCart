@@ -55,12 +55,13 @@ interface SpeedyCartApiService {
         @Body deliveryPerson: DeliveryPerson
     )
 
+<<<<<<< HEAD
     @GET("/orders/shop/{id}")
     suspend fun getOrderWaitingByShop(@Path("id") id: Long): Response<List<OrderDTO>>
 
     @PATCH("/delivery/{id}/prepared")
     suspend fun setPreparedDelivery(@Path("id") id: Long)
-    
+=======
     @GET("/orders")
     suspend fun getOrders(): Response<List<OrderDTO>>
 
@@ -69,4 +70,5 @@ interface SpeedyCartApiService {
         @Path("id") id: Long,
         @Body delivery: Delivery
     )
+>>>>>>> 8e6a04e (feat(app): Mise en place de l'écran de suivi de la commande d'un utilisateur)
 }

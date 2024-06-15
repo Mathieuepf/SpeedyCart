@@ -16,13 +16,14 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".ui.activities.ShopOrderDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ShopDeliveryPlanActivity"
-            android:exported="false" />
-        <activity
+=======
             android:name=".ui.activities.DeliveryStatusActivity"
+>>>>>>> 8e6a04e (feat(app): Mise en place de l'écran de suivi de la commande d'un utilisateur)
             android:exported="false" />
         <activity
             android:name=".ui.activities.DeliveryPersonDeliveryPlanActivity"

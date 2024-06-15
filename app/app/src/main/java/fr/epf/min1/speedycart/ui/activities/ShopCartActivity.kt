@@ -181,7 +181,7 @@ class ShopCartActivity : AppCompatActivity() {
                     val response = clientService.addOrder(orderToAdd)
                     if(response.isSuccessful){
                         repo.wipeCart()
-                        val intent = Intent(this@ShopCartActivity, MainActivity::class.java)
+                        val intent = Intent(this@ShopCartActivity, DeliveryStatusActivity::class.java)
                         startActivity(intent)
                     }else{
                         throw Exception("commande pas passée")

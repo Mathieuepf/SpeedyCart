@@ -13,6 +13,9 @@ dependencyResolutionManagement {
         maven{
             url = uri("https://sdk.squareup.com/public/android")
         }
+        maven {
+            url = uri("https://jitpack.io")
+        }
     }
 }
 
