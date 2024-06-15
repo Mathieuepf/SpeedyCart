@@ -11,6 +11,7 @@ import fr.epf.min1.speedycart.data.OrderDTO
 import fr.epf.min1.speedycart.data.getCompleteName
 import fr.epf.min1.speedycart.ui.adapters.SHOP_ORDER_EXTRA
 import fr.epf.min1.speedycart.ui.fragments.NavigationBarFragment
+import fr.epf.min1.speedycart.ui.fragments.ProductDtoListFragment
 
 class ShopOrderDetailsActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -24,9 +25,23 @@ class ShopOrderDetailsActivity : AppCompatActivity() {
         // put navBar
         if (savedInstanceState == null) { // check navbar not already created
             supportFragmentManager.beginTransaction()
-                .replace(R.id.main_navbar_fragment_container, NavigationBarFragment())
+                .replace(R.id.shop_order_details_navbar_fragment_container, NavigationBarFragment())
                 .commit()
         }
+
+        // show protuct and there quantity
+        setProductList()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    private fun setProductList() {
+        val fragment = ProductDtoListFragment()
+        val productDto2 =
+            intent.extras?.getParcelable(SHOP_ORDER_EXTRA, OrderDTO::class.java)?.products
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.shop_order_details_fragment_container, fragment)
+            .commit()
+        productDto2?.apply { fragment.setproductDtoList(this) }
     }
 
     @SuppressLint("SetTextI18n")
@@ -36,7 +51,7 @@ class ShopOrderDetailsActivity : AppCompatActivity() {
         val nameDeliveryPersonTextView =
             findViewById<TextView>(R.id.shop_order_details_delivery_person_name_textview)
         val clientNameTextView =
-            findViewById<TextView>(R.id.shop_order_details_client_name_textview)
+            findViewById<TextView>(R.id.shop_order_details_product_name_textview)
         val deliveryPersonVehicle =
             findViewById<TextView>(R.id.shop_order_details_delivery_person_vehicle_textview)
         val priceTextView = findViewById<TextView>(R.id.shop_order_details_salary_textview)
@@ -51,11 +66,11 @@ class ShopOrderDetailsActivity : AppCompatActivity() {
                 deliveryPersonVehicle.text =
                     this.order.delivery.deliveryPerson?.vehicle ?: "En attente d'un livreur"
                 orderAtTextView.text =
-                    "Commandé à ${orderDTO.order.orderAt.hour} : ${orderDTO.order.orderAt.minute}"
+                    "Commandé à ${this.order.orderAt.hour} : ${this.order.orderAt.minute}"
                 priceTextView.text =
                     "Remuneration:" + String.format(
                         "%.2f",
-                        orderDTO.order.delivery.fee / 20 * 19
+                        this.order.delivery.fee / 20 * 19
                     ) + " €"
             }
         }
