@@ -71,6 +71,8 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     kapt(libs.androidx.room.compiler)
     implementation(libs.androidx.room.ktx)
-    implementation("com.squareup.sdk.in-app-payments:card-entry:1.6.5")
-    implementation("com.github.transferwise:sequence-layout:1.2.0")
+
+    // card payment system
+    implementation(libs.card.entry)
+    implementation(libs.sequence.layout)
 }

@@ -35,15 +35,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logo"
+            app:tint="@color/dark_grey" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.transferwise.sequencelayout.SequenceLayout
         android:id="@+id/sequenceLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:background="@color/white"
+        android:padding="10dp"
+        android:paddingHorizontal="32dp"
         app:layout_constraintBottom_toTopOf="@+id/delivery_status_navbar_fragment_container"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
