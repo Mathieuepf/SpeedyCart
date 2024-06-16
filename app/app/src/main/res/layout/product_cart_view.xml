@@ -9,60 +9,68 @@
         android:id="@+id/product_cart_card_cardview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="20dp"
-        app:cardCornerRadius="20dp">
+        android:layout_margin="4dp"
+        android:background="@android:color/transparent"
+        android:padding="16dp"
+        app:cardBackgroundColor="@color/light_grey"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp">
 
         <ImageView
             android:id="@+id/product_cart_card_imageview"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="80dp"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/less_rounded_white_square"
+            android:contentDescription="@string/shop_image_description"
+            android:src="@drawable/inventory_fill0_24"
+            app:tint="@color/dark_grey"
+            android:layout_marginTop="8dp" />
 
         <TextView
             android:id="@+id/name_product_cart_card_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="90dp"
-            android:text="TextView"
+            tools:text="TextView"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/price_product_cart_card_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="110dp"
-            android:text="TextView" />
+            tools:text="TextView" />
 
         <TextView
             android:id="@+id/weight_product_cart_card_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="130dp"
-            android:text="TextView"
+            tools:text="TextView"
             android:textStyle="italic" />
 
         <TextView
             android:id="@+id/shop_name_product_cart_card_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="150dp"
-            android:text="TextView"
+            tools:text="TextView"
             android:textStyle="italic" />
 
         <ImageButton
             android:id="@+id/delete_button_product_cart_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="330dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="330dp"
+            android:layout_marginBottom="40dp"
             android:layout_marginTop="150dp"
-            android:background="@color/white"
-            android:tint="@color/design_default_color_error"
-            app:srcCompat="@drawable/baseline_delete_48" />
+            android:background="@drawable/less_rounded_white_square"
+            app:srcCompat="@drawable/baseline_delete_48"
+            app:tint="@color/orange_background" />
     </androidx.cardview.widget.CardView>
 </FrameLayout>
