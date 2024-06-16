@@ -23,112 +23,118 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logo"
+            app:tint="@color/dark_grey" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/cart_navbar_fragment_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shop_cart_top_bar_layout">
+
+        <TextView
+            android:id="@+id/shop_cart_screen_name_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/name_textview_shop_cart_screen_text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.028"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/shop_cart_screen_name_container_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shop_cart_screen_name_textview"
+            tools:text="Jean Dupond" />
+
+        <TextView
+            android:id="@+id/shop_cart_screen_adress_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/adresse_textview_shop_cart_screen_text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.028"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shop_cart_screen_name_container_textview" />
+
+        <TextView
+            android:id="@+id/shop_cart_screen_adress_container_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="24dp"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shop_cart_screen_adress_textview"
+            tools:text="10 Rue Monge, 34070 Montpellier" />
+
+        <TextView
+            android:id="@+id/shop_cart_screen_product_list_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/product_list_textview_shop_cart_screen_text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.032"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shop_cart_screen_adress_container_textview" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shop_cart_screen_product_list_recyclerview"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/shop_cart_screen_payment_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/shop_cart_screen_product_list_textview"
+            app:layout_constraintVertical_bias="0.117" />
+
+        <Button
+            android:id="@+id/shop_cart_screen_payment_button"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange_background"
+            android:text="@string/payment_button_shop_cart_screen_text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageButton
             android:id="@+id/shop_cart_screen_status_imagebutton"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
             android:background="@drawable/button_background"
             android:src="@drawable/list_bulleted_24"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.931"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/shop_cart_screen_name_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_textview_shop_cart_screen_text"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shop_cart_top_bar_layout"
-        app:layout_constraintVertical_bias="0.03" />
-
-    <TextView
-        android:id="@+id/shop_cart_screen_name_container_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shop_cart_top_bar_layout"
-        app:layout_constraintVertical_bias="0.087"
-        tools:text="Jean Dupond" />
-
-    <TextView
-        android:id="@+id/shop_cart_screen_adress_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/adresse_textview_shop_cart_screen_text"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.07"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shop_cart_top_bar_layout"
-        app:layout_constraintVertical_bias="0.147" />
-
-    <TextView
-        android:id="@+id/shop_cart_screen_adress_container_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.093"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shop_cart_top_bar_layout"
-        app:layout_constraintVertical_bias="0.205"
-        tools:text="10 Rue Monge, 34070 Montpellier" />
-
-    <TextView
-        android:id="@+id/shop_cart_screen_product_list_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/product_list_textview_shop_cart_screen_text"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.079"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shop_cart_top_bar_layout"
-        app:layout_constraintVertical_bias="0.258" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/shop_cart_screen_product_list_recyclerview"
-        android:layout_width="409dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/cart_navbar_fragment_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shop_cart_screen_product_list_textview" />
-
-    <Button
-        android:id="@+id/shop_cart_screen_payment_button"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:text="@string/payment_button_shop_cart_screen_text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shop_cart_top_bar_layout"
-        app:layout_constraintVertical_bias="0.854" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cart_navbar_fragment_container"
@@ -139,4 +145,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
