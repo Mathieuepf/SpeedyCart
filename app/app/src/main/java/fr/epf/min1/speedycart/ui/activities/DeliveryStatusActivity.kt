@@ -126,7 +126,7 @@ class DeliveryStatusActivity : AppCompatActivity() {
                 val lastOrder = clientOrderList.last().order
                 deliveryToUpdate = lastOrder.delivery
 
-                val boolList: List<Boolean> = listOf(lastOrder.delivery.got, lastOrder.delivery.prepared, lastOrder.delivery.accepted, lastOrder.delivery.delivered)
+                val boolList: List<Boolean> = listOf(lastOrder.delivery.got, lastOrder.delivery.prepared, lastOrder.delivery.deliveryPerson != null, lastOrder.delivery.delivered)
                 //Log.d(TAG, boolList.toString())
                 val boolListTrue: List<Boolean> = boolList.filter { bool -> bool == true}
                 Log.d(TAG, boolListTrue.toString())

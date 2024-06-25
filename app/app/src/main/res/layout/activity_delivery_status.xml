@@ -7,17 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.DeliveryStatusActivity">
 
-    <TextView
-        android:id="@+id/delivery_status_screen_end_message_textview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/delivery_status_navbar_fragment_container"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/sequenceLayout"
-        app:layout_constraintTop_toBottomOf="@+id/delivery_status_screen_top_bar_layout"
-        app:layout_constraintVertical_bias="0.69" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/delivery_status_screen_top_bar_layout"
         android:layout_width="match_parent"
@@ -48,8 +37,10 @@
         android:paddingHorizontal="32dp"
         app:layout_constraintBottom_toTopOf="@+id/delivery_status_navbar_fragment_container"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/delivery_status_screen_top_bar_layout"
+        app:layout_constraintVertical_bias="0.0"
         app:progressBackgroundColor="@color/material_dynamic_neutral50"
         app:progressForegroundColor="@color/orange_background">
 
@@ -87,6 +78,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/delivery_status_screen_end_message_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_margin="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/delivery_status_screen_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="aaaaa" />
 
     <Button
         android:id="@+id/delivery_status_screen_button"
